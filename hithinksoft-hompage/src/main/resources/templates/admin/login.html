@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns="htp://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:text="#{view.admin.login.form-logo}">后台管理 - 登录</title>
+
+    <!-- BEGIN META -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="keywords" content="your,keywords"/>
+    <meta name="description" content="Short explanation about this website"/>
+    <meta name="renderer" content="webkit"/>
+    <!-- END META -->
+
+    <!-- BEGIN STYLESHEETS -->
+    <link type="text/css" rel="stylesheet"
+          href="http://cdn.hithinksoft.com/home-page/css/theme-default/bootstrap.css"
+          th:href="@{http://cdn.hithinksoft.com/home-page/css/theme-default/bootstrap.css}"/>
+    <link type="text/css" rel="stylesheet"
+          href="http://cdn.hithinksoft.com/home-page/css/theme-default/materialadmin.css"
+          th:href="@{http://cdn.hithinksoft.com/home-page/css/theme-default/materialadmin.css}"/>
+    <link type="text/css" rel="stylesheet"
+          href="http://cdn.hithinksoft.com/home-page/css/theme-default/font-awesome.min.css"
+          th:href="@{http://cdn.hithinksoft.com/home-page/css/theme-default/font-awesome.min.css}"/>
+    <link type="text/css" rel="stylesheet"
+          href="http://cdn.hithinksoft.com/home-page/css/theme-default/material-design-iconic-font.min.css"
+          th:href="@{http://cdn.hithinksoft.com/home-page/css/theme-default/material-design-iconic-font.min.css}"/>
+    <!-- END STYLESHEETS -->
+    <style>
+        .btn-color {
+            background-color: #27B390;
+            color: #fff;
+        }
+
+        .login-bg-circle {
+            background-image: url("http://cdn.hithinksoft.com/home-page/img/login-bg-circle.png");
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        .login-logo {
+            background-image: url("http://cdn.hithinksoft.com/home-page/img/login-logo.png");
+            background-repeat: no-repeat;
+            width: 60%;
+            height: 64px;
+            margin-left: 16%;
+            margin-top: 2%;
+        }
+    </style>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script type="text/javascript"
+            src="http://cdn.hithinksoft.com/home-page/js/libs/utils/html5shiv.js"
+            th:src="@{http://cdn.hithinksoft.com/home-page/js/libs/utils/html5shiv.js}"></script>
+    <script type="text/javascript"
+            src="http://cdn.hithinksoft.com/home-page/js/libs/utils/respond.min.js"
+            th:src="@{http://cdn.hithinksoft.com/home-page/js/libs/utils/respond.min.js}"></script>
+    <![endif]-->
+</head>
+<body class="menubar-hoverable header-fixed" style="background-color: #fff;">
+<!-- BEGIN LOCKED SECTION -->
+<section class="section-account">
+    <div class="img-backdrop login-bg-circle" style="background-color: #27B390;">
+        <br/>
+        <div class="row">
+            <div class="login-logo"></div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                    <div class="card card-underline contain-xs">
+                        <div class="card-head">
+                            <header class="text-default-light" th:text="#{view.admin.login.form-login}">欢迎访问后台管理系统</header>
+                        </div><!--end .card-head -->
+                        <div class="card-body">
+                            <form class="form floating-label" th:action="@{/admin/login}" accept-charset="utf-8" method="post" role="form">
+                                <div th:if="${param.error}" class="alert alert-danger" th:text="#{view.admin.login.error-message}">
+                                    Invalid username and password.
+                                </div>
+                                <div th:if="${param.logout}" class="alert alert-success" th:text="#{view.admin.login.logout-message}">
+                                    You have been logged out.
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="username" id="username"/>
+                                    <label for="username" th:text="#{view.admin.login.username}">用户名</label>
+                                </div>
+                                <br/>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="password" name="password" />
+                                    <label for="password" th:text="#{view.admin.login.password}">密码</label>
+                                </div>
+                                <br/>
+                                <div class="form-group">
+                                    <button class="btn btn-block text-bold btn-color" type="submit" th:text="#{view.admin.login.login-text}">登录</button>
+                                </div>
+                                <br/>
+                            </form>
+                        </div><!--end .card-body -->
+                    </div><!--end .card -->
+                </div><!--end .col -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END LOCKED SECTION -->
+
+<!-- BEGIN JAVASCRIPT -->
+<script src="http://cdn.hithinksoft.com/home-page/vendor/jquery/jquery.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/vendor/jquery/jquery.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/vendor/bootstrap/js/bootstrap.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/vendor/bootstrap/js/bootstrap.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/libs/spin.js/spin.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/libs/spin.js/spin.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/libs/autosize/jquery.autosize.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/libs/autosize/jquery.autosize.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/libs/nanoscroller/jquery.nanoscroller.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/libs/nanoscroller/jquery.nanoscroller.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/core/source/App.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/core/source/App.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/core/source/AppNavigation.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/core/source/AppNavigation.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/core/source/AppOffcanvas.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/core/source/AppOffcanvas.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/core/source/AppCard.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/core/source/AppCard.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/core/source/AppForm.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/core/source/AppForm.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/core/source/AppNavSearch.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/core/source/AppNavSearch.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/core/source/AppVendor.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/core/source/AppVendor.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/core/demo/Demo.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/core/demo/Demo.js}"></script>
+<!-- END JAVASCRIPT -->
+</body>
+</html>

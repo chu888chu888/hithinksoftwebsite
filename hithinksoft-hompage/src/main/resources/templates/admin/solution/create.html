@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="admin/layouts/main">
+<head>
+    <meta charset="UTF-8">
+    <title>new</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-header">
+        <ol class="breadcrumb">
+            <li><a th:href="@{/admin/solutions}" th:text="#{view.layouts.main.solution}"></a></li>
+            <li class="active" th:text="*{id}?#{view.admin.solutions.header.update}:#{view.admin.solutions.header.create}"></li>
+        </ol>
+    </div>
+    <div class="section-body contain-lg">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <form class="form-horizontal" role="form"
+                          th:action="@{/admin/solutions}"
+                          th:method="post">
+                        <div class="card-head style-primary">
+                            <header th:text="*{id}?#{view.admin.jobs.header.update}:#{view.admin.jobs.header.create}"></header>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <input type="hidden" th:name="id" th:value="${solution.id}?${solution.id}">
+                                <label for="module" class="col-sm-2 control-label"
+                                       th:text="#{view.main.layouts.main.solutionType}">方案类别</label>
+
+                                <div class="col-sm-9" th:if="${solution.id}">
+                                    <select th:name="solutionGroup" id="module" class="form-control"
+                                            required>
+                                        <option th:if="!${solutionGroup.name.equals(solution.solutionGroup.name)}"
+                                                th:each="solutionGroup,iterStat:${solutionGroups}"
+                                                th:value="${solutionGroup.id}"
+                                                th:text="${solutionGroup.name}"></option>
+                                        <option th:if="${solutionGroup.name.equals(solution.solutionGroup.name)}"
+                                                selected
+                                                th:each="solutionGroup,iterStat:${solutionGroups}"
+                                                th:value="${solutionGroup.id}"
+                                                th:text="${solutionGroup.name}"></option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-9" th:if="!${solution.id}">
+                                    <select th:name="solutionGroup" class="form-control" required>
+                                        <option th:each="solutionGroup,iterStat:${solutionGroups}"
+                                                th:value="${solutionGroup.id}"
+                                                th:text="${solutionGroup.name}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="title" class="col-sm-2 control-label"
+                                       th:text="#{view.main.layouts.main.solutionName}">方案名称</label>
+
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="title"
+                                           th:name="title"
+                                           th:value="${solution.title}?${solution.title}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="solutionBrief" class="col-sm-2 control-label"
+                                       th:text="#{view.main.layouts.main.solutionBrief}">方案简介</label>
+
+                                <div class="col-sm-9" id="solutionBrief" th:name="solutionBrief"
+                                     th:value="${solution.solutionBrief}?${solution.solutionBrief}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="detail" class="col-sm-2 control-label"
+                                       th:text="#{view.main.layouts.main.solutionDetail}">方案详情</label>
+
+                                <div class="col-sm-9" id="detail" th:name="detail"
+                                     th:value="${solution.detail}?${solution.detail}"></div>
+                            </div>
+                        </div>
+                        <div class="card-actionbar text-center">
+                            <button type="button" class="btn ink-reaction btn-primary" name="affirm"
+                                    th:text="#{view.admin.solution.affirm}">确认
+                            </button>
+                            <a href="#" th:href="${#mvc.url('SIC#index').build()}">
+                                <button type="button" class="btn ink-reaction btn-primary"
+                                        th:text="#{view.admin.solution.back}">返回
+                                </button>
+                            </a>
+                        </div>
+                    </form>
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header" style="text-align: left">
+                                    <h4 class="model-title" id="myModalLabel" style="display:inline"
+                                        th:text="#{view.admin.solution.message}">提交信息</h4>
+                                    <button type="button" class="close" data-dismiss="modal"
+                                            aria-hidden="true">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p style="text-align: center"
+                                       th:text="#{view.admin.solution.commit}">确认提交?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default"
+                                            data-dismiss="modal"
+                                            th:text="#{view.admin.solution.esc}">取消
+                                    </button>
+                                    <button type="button" class="btn btn-primary" name="reconfirm"
+                                            th:text="#{view.admin.solution.affirm}">确认
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+<script layout:fragment="script">
+    var ue = UE.getEditor('detail', {
+        toolbars: [
+            ['fullscreen', 'source', '|', 'undo', 'redo', '|', 'bold', 'italic', 'underline', '|',
+             'justifyleft',
+             'justifycenter', 'justifyright', 'justifyjustify', '|', 'insertorderedlist',
+             'insertunorderedlist', '|', 'simpleupload']
+        ],
+        initialFrameWidth: '100%',
+        initialFrameHeight: 500,
+        textarea: "detail"
+    });
+    if ([[${solution.detail}]]) {
+        ue.ready(function () {
+            ue.setContent([[${solution.detail}]]);
+        });
+    }
+    var solutionBrief = UE.getEditor('solutionBrief', {
+        toolbars: [
+            ['fullscreen', 'source', '|', 'undo', 'redo', '|', 'bold', 'italic', 'underline', '|',
+             'justifyleft',
+             'justifycenter', 'justifyright', 'justifyjustify', '|', 'insertorderedlist',
+             'insertunorderedlist', '|', 'simpleupload']
+        ],
+        initialFrameWidth: '100%',
+        initialFrameHeight: 500,
+        textarea: "solutionBrief"
+    });
+    if ([[${solution.solutionBrief}]]) {
+        solutionBrief.ready(function () {
+            solutionBrief.setContent([[${solution.solutionBrief}]]);
+        });
+    }
+    $("button[name='affirm']").on("click", function () {
+        var $form = $(this).closest("form");
+        $("#myModal").modal();
+        $("button[name='reconfirm']").on("click", function () {
+            $form.trigger('submit');
+        });
+    })
+
+</script>
+</html>

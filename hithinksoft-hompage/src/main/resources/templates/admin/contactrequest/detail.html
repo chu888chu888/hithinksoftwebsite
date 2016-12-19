@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml"
+      layout:decorator="admin/layouts/main">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title th:text="#{view.admin.contactrequest.detail.title}">详细信息</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <section>
+        <div class="section-header">
+            <ol class="breadcrumb">
+                <li><a href="/admin/contactrequest/all" th:href="@{/admin/contactrequest/all}"
+                       th:text="#{view.layouts.main.contactus}">联系我们</a></li>
+                <li class="active" th:text="#{view.admin.contactrequest.detail.title}">详细信息</li>
+            </ol>
+        </div>
+        <div class="section-body">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="card card-underline" th:object="${contactRequest}">
+                        <div class="card-head">
+                            <header th:text="*{enterpriseName}">公司名称</header>
+                            <div class="tools">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-icon-toggle" data-toggle="tooltip"
+                                            data-placement="top"
+                                            data-original-title="删除"
+                                            onclick="deletecontactrequest()"><i class="fa fa-trash"></i></button>
+                                    <a href="#" th:href="@{'/admin/contactrequests/'+ ${method}(page=${page})}"
+                                       class="btn btn-icon-toggle" data-toggle="tooltip" data-placement="top"
+                                       data-original-title="返回"><i class="fa fa-mail-reply"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-6">
+                                    <dl class="dl-horizontal">
+                                        <dt th:text="#{view.joinus.contactus.contact}">Contact</dt>
+                                        <dd th:text="*{contact}"></dd>
+                                        <dt th:text="#{view.joinus.contactus.telephone}">Telephone</dt>
+                                        <dd th:text="*{telephone}"></dd>
+                                        <dt th:text="#{view.joinus.contactus.email}">E-mail</dt>
+                                        <dd th:text="*{email}"></dd>
+                                        <dt th:text="#{view.joinus.contactus.website}">WebSite</dt>
+                                        <dd th:text="*{website}"></dd>
+                                        <dt th:text="#{view.joinus.contactus.requirementdescription}">
+                                            RequirementDescription
+                                        </dt>
+                                        <dd th:text="*{requirementDescription}"></dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="deleteContactRequest" role="dialog" aria-labelledby="deleteModalForm"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" th:text="#{view.admin.contactrequest.modal.title}">删除</h3>
+                        </div>
+                        <form class="form-horizontal form-validate" role="form" id="deleteModalForm"
+                              th:action="@{/users/delete}" th:method="delete">
+                            <div class="modal-body">
+                                <h6 th:text="#{view.admin.contactrequest.modal.message}">确认要删除该条信息么？</h6>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-default" type="button" data-dismiss="modal"
+                                        th:text="#{view.admin.contactrequest.modal.cancel}">取消
+                                </button>
+                                <button class="btn btn-primary" type="submit"
+                                        th:text="#{view.admin.contactrequest.modal.confirm}">确认删除
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <script th:inline="javascript">
+        function deletecontactrequest() {
+//            var page = [[${page}]];
+//            var method = [[${method}]];
+            var id = [[${contactRequest.id}]];
+            $("#deleteModalForm").attr("action", "/admin/contactrequests/" + id);
+            $("#deleteContactRequest").modal();
+        }
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main">
+<head>
+    <title>Home</title>
+    <style type="text/css">
+        .owl-carousel.rounded-nav .owl-nav [class*="owl-"]:hover {
+            border-radius: 50%;
+        }
+
+        .owl-carousel.rounded-nav .owl-nav [class*="owl-"] {
+            border-radius: 50%;
+        }
+
+        .testimonial .testimonial-author img {
+            max-width: 70px;
+        }
+        .owl-stage{
+            transition: 0.5s !important;
+        }
+        .introduce-escloud {
+            position: relative;
+            top: 10px;
+            width: 364px;
+            height: 364px;
+            margin: 0 auto;
+            background:url("http://cdn.hithinksoft.com/home-page/index/xingkong.png");
+        }
+        .introduce-escloud .item-wrap {
+            position: absolute;
+            line-height: 22px;
+            color: #292929;
+        }
+        .introduce-escloud .introduce-escloud-zero {
+            top: 138px;
+            right: 102px;
+        }
+        .item-wrap .select-0 {
+            display: inline-block;
+            width: 153px;
+            height: 97px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-image: url("http://cdn.hithinksoft.com/home-page/index/bigcloud.png");
+
+        }
+        .introduce-escloud .introduce-escloud-one {
+            width: 410px;
+            right: 350px;
+            top: -40px;
+        }
+        .introduce-escloud .introduce-escloud-two {
+            width: 410px;
+            right: 440px;
+            top: 110px;
+        }
+        .introduce-escloud .introduce-escloud-three {
+            width: 410px;
+            right: 350px;
+            top: 225px;
+        }
+        .introduce-escloud .introduce-escloud-four {
+            width: 410px;
+            right: -400px;
+            top: -40px;
+        }
+        .introduce-escloud .introduce-escloud-five {
+            width: 410px;
+            right: -485px;
+            top: 110px;
+        }
+        .introduce-escloud .introduce-escloud-six {
+            width: 410px;
+            right: -400px;
+            top: 225px;
+        }
+        .item-wrap .item-select-right {
+            right: -140px;
+        }
+        .item-wrap .item-select-left {
+            left: -140px;
+        }
+        .item-wrap .item-select-right,.item-wrap .item-select-left {
+            width: 128px;
+            height: 128px;
+            border: 3px #f4f4f4 solid;
+            border-radius: 70px;
+            text-align: center;
+            line-height: 12;
+            background: #fff;
+            position: absolute;
+            top: 50%;
+            margin-top: -52px;
+        }
+        .item-wrap .select-icon {
+            display: inline-block;
+            width: 122px;
+            height:122px;
+            border-radius: 60px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .item-wrap .js-select:hover{
+            background: #0a286c;
+        }
+        .item-wrap .select-1 {
+            background-image: url("http://cdn.hithinksoft.com/home-page/index/cloud.png");
+
+        }
+        .item-wrap .js-select:hover .select-1
+        {
+            background-image: url("http://cdn.hithinksoft.com/home-page/index/cloud1.png");
+        }
+        .item-wrap .select-2 {
+            background-image: url("http://cdn.hithinksoft.com/home-page/index/number.png");
+
+        }
+        .item-wrap .js-select:hover .select-2
+        {
+            background-image: url("http://cdn.hithinksoft.com/home-page/index/number1.png");
+        }
+        .item-wrap .select-3 {
+            background-image: url("http://cdn.hithinksoft.com/home-page/index/card.png");
+
+        }
+        .item-wrap .js-select:hover .select-3
+        {
+            background-image: url("http://cdn.hithinksoft.com/home-page/index/card1.png");
+        }
+        .item-wrap .select-4 {
+            background-image: url("http://cdn.hithinksoft.com/home-page/index/weihu.png");
+
+        }
+        .item-wrap .js-select:hover .select-4
+        {
+            background-image: url("http://cdn.hithinksoft.com/home-page/index/weihu1.png");
+        }
+        .item-wrap .select-5 {
+            background-image: url("http://cdn.hithinksoft.com/home-page/index/people.png");
+
+        }
+        .item-wrap .js-select:hover .select-5
+        {
+            background-image: url("http://cdn.hithinksoft.com/home-page/index/people1.png");
+        }
+        .item-wrap .select-6 {
+            background-image: url("http://cdn.hithinksoft.com/home-page/index/run.png");
+
+        }
+        .item-wrap .js-select:hover .select-6
+        {
+            background-image: url("http://cdn.hithinksoft.com/home-page/index/run1.png");
+        }
+        .item-wrap h2 {
+            margin: 0 0 10px 0;
+            color: #29294a;
+        }
+        .item-wrap p {
+            margin: 0;
+        }
+        h2{
+            letter-spacing: 2px;
+        }
+        .slider-container {
+            background-color: #EAEAEA;!important;
+        }
+        .img-suppliers{
+            display: inline;
+        }
+        @media (min-width: 1200px) {
+            .suppliers-mobile{
+                display: none;
+            }
+            .content-wrap-mobile{
+                display: none;
+            }
+        }
+        @media (max-width: 1199px) {
+            .suppliers{
+                display: none;
+            }
+            .content-wrap, .divider{
+                display: none;
+            }
+            .item-select-mobile{
+                width: 128px;
+                height: 128px;
+                border: 3px #f4f4f4 solid;
+                border-radius: 70px;
+                text-align: center;
+                line-height: 12;
+                background: #fff;
+                margin: 10px auto;
+            }
+            .item-wrap{
+                text-align: center;
+                margin-bottom: 32px;
+            }
+        }
+
+        @media (max-width: 399px) {
+            #computer1{display: none;}
+        }
+
+        @media (min-width: 400px) {
+            #phone1{display: none}
+            #phone2{display: none}
+        }
+    </style>
+</head>
+<body>
+<section layout:fragment="content">
+    <div role="main" class="main">
+        <div class="slider-container light rev_slider_wrapper">
+            <div id="revolutionSlider" class="slider rev_slider" data-plugin-revolution-slider
+                 data-plugin-options='{&quot;delay&quot;: 9000, &quot;gridwidth&quot;: 800, &quot;gridheight&quot;: 500}'>
+                <ul>
+                    <li data-transition="fade">
+                        <img src="http://cdn.hithinksoft.com/home-page/img/light-cover.jpg" th:src="@{http://cdn.hithinksoft.com/home-page/img/light-cover.jpg}"
+                             alt=""
+                             data-bgposition="center center"
+                             data-bgfit="cover"
+                             data-bgrepeat="no-repeat"
+                             class="rev-slidebg">
+
+                        <div class="rs-background-video-layer"
+                             data-forcerewind="on"
+                             data-volume="mute"
+                             data-videowidth="100%"
+                             data-videoheight="100%"
+                             data-videomp4="http://cdn.hithinksoft.com/home-page/video/light.mp4"
+                             data-videopreload="preload"
+                             data-videoloop="loop"
+                             data-forceCover="1"
+                             data-aspectratio="16:9"
+                             data-autoplay="true"
+                             data-autoplayonlyfirsttime="false"
+                             data-nextslideatend="true"
+                                >
+                        </div>
+
+
+                        <div class="tp-caption"
+                             data-x="center" data-hoffset="-150"
+                             data-y="188"
+                             data-start="1000"
+                             style="z-index: 5"
+                             data-transform_in="x:[-300%];opacity:0;s:800;"><img
+                                src="http://cdn.hithinksoft.com/home-page/img/slide-title-border-light.png" th:src="@{http://cdn.hithinksoft.com/home-page/img/slide-title-border-light.png}"
+                                alt=""></div>
+
+                        <div class="tp-caption top-label"
+                             data-x="center" data-hoffset="0"
+                             data-y="188"
+                             data-start="800"
+                             style="z-index: 5;color: #0a286c;"
+                             data-transform_in="y:[-300%];opacity:0;s:800;"
+                             th:text="#{view.abouthuaxin.abouthuaxin.titile1}">稳健经营 持续发展
+                        </div>
+
+                        <div class="tp-caption"
+                             data-x="center" data-hoffset="150"
+                             data-y="188"
+                             data-start="1000"
+                             style="z-index: 5"
+                             data-transform_in="x:[300%];opacity:0;s:800;"><img
+                                src="http://cdn.hithinksoft.com/home-page/img/slide-title-border-light.png" th:src="@{http://cdn.hithinksoft.com/home-page/img/slide-title-border-light.png}"
+                                alt=""></div>
+
+                        <div class="tp-caption main-label"
+                             data-x="center" data-hoffset="0"
+                             data-y="218"
+                             data-start="1500"
+                             data-whitespace="nowrap"
+                             data-transform_in="y:[100%];s:800;"
+                             data-transform_out="opacity:0;s:800;"
+                             style="z-index: 5;line-height: 72px;color: #0a286c;"
+                             data-mask_in="x:0px;y:0px;" th:text="#{view.abouthuaxin.abouthuaxin.titile2}">专注信息技术产业
+                        </div>
+
+                        <div id="computer1" class="tp-caption bottom-label"
+                             data-x="center" data-hoffset="0"
+                             data-y="288"
+                             data-start="2000"
+                             style="z-index: 5;line-height: 50px;color: #0a286c;"
+                             data-transform_in="y:[100%];opacity:0;s:800;"
+                             th:text="#{view.abouthuaxin.abouthuaxin.titile3}">为客户提供最优秀的应用软件产品和服务
+                        </div>
+                        <div id="phone1" class="tp-caption bottom-label"
+                             data-x="center" data-hoffset="0"
+                             data-y="288"
+                             data-start="2000"
+                             style="z-index: 5;line-height: 50px;color: #0a286c;"
+                             data-transform_in="y:[100%];opacity:0;s:800;"
+                             >为客户提供最优秀的
+                        </div>
+                        <div id="phone2" class="tp-caption bottom-label"
+                             data-x="center" data-hoffset="0"
+                             data-y="328"
+                             data-start="2000"
+                             style="z-index: 5;line-height: 50px;color: #0a286c;"
+                             data-transform_in="y:[100%];opacity:0;s:800;"
+                             >云计算、大数据、电子商务、应用软件产品与服务
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row mt-xl">
+                <div class="col-md-12 center">
+                    <h2 class="mt-xl" style="margin-bottom: 45px;" th:text="#{view.index.titleone}"></h2>
+
+                    <div class="divider divider-primary divider-small divider-small-center mb-xl">
+                        <!--<hr>-->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="content-wrap" style="height: 475px;">
+                        <div class="introduce-escloud">
+                            <div class="item-wrap introduce-escloud-zero">
+                                <span class="select-0"></span>
+                            </div>
+                            <div class="item-wrap text-right introduce-escloud-one">
+                                <h2 th:text="#{view.index.solution1}">云计算</h2>
+                                <p th:text="#{view.index.solution11}">依托于自有的云数据中心，基于专业的云服务实现和提供经验</p>
+                                <p th:text="#{view.index.solution12}">能够针对各户的各种业务提供在线云服务与技术人才</p>
+                                <div class="item-select-right js-select">
+                                    <span class="select-icon select-1"></span>
+                                </div>
+                            </div>
+                            <div class="item-wrap text-right introduce-escloud-two">
+                                <h2 th:text="#{view.index.solution2}">大数据</h2>
+                                <p th:text="#{view.index.solution21}">大数据驱动未来发展</p>
+                                <p th:text="#{view.index.solution22}">大数据技术的战略意义不在于掌握庞大的数据信息</p>
+                                <p th:text="#{view.index.solution23}">而在于对这些含有意义的数据进行专业化处理</p>
+                                <div class="item-select-right js-select">
+                                    <span class="select-icon select-2"></span>
+                                </div>
+                            </div>
+
+                            <div class="item-wrap text-right introduce-escloud-three">
+                                <h2 style="padding-top: 80px;" th:text="#{view.index.solution3}">电子商务</h2>
+                                <p th:text="#{view.index.solution31}">以电子及电子技术为手段，以商务为核心</p>
+                                <p th:text="#{view.index.solution32}">把原本传统的销售和购物渠道移到互联网上来</p>
+                                <p th:text="#{view.index.solution33}">使生产企业达到全球化、网络化、无形化、个性化、一体化</p>
+                                <div class="item-select-right js-select">
+                                    <span class="select-icon select-3"></span>
+                                </div>
+                            </div>
+
+                            <div class="item-wrap text-left introduce-escloud-four">
+                                <h2 th:text="#{view.index.solution4}">专业运维服务</h2>
+                                <p th:text="#{view.index.solution41}">由专业团队7*24小时不间断运维保障系统的可靠性</p>
+                                <p th:text="#{view.index.solution42}">结合我们定制的服务，让你更加专注于业务与创新</p>
+                                <div class="item-select-left js-select">
+                                    <span class="select-icon select-4"></span>
+                                </div>
+                            </div>
+
+                            <div class="item-wrap text-left introduce-escloud-five">
+                                <h2 th:text="#{view.index.solution5}">解决方案提供商</h2>
+                                <p th:text="#{view.index.solution51}">提供传统软件应用服务、移动端开发</p>
+                                <p th:text="#{view.index.solution52}">电子商务网站以及基于大数据运维</p>
+                                <p th:text="#{view.index.solution53}">企业私有云平台部署集一体的企业级解决方案</p>
+                                <div class="item-select-left js-select">
+                                    <span class="select-icon select-5"></span>
+                                </div>
+                            </div>
+
+                            <div class="item-wrap text-left introduce-escloud-six">
+                                <h2 style="padding-top: 80px;" th:text="#{view.index.solution6}">自动化部署与监控</h2>
+                                <p th:text="#{view.index.solution61}">你可以更轻松地快速退出新功能</p>
+                                <p th:text="#{view.index.solution62}">避免在应用程序部署过程中出现停机</p>
+                                <p th:text="#{view.index.solution63}">方便对基础设施进行扩展，并能够轻松部署及监控分布式集群系统</p>
+                                <div class="item-select-left js-select">
+                                    <span class="select-icon select-6"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="content-wrap-mobile">
+                        <div class="item-wrap">
+                            <div class="item-select-mobile ">
+                                <span class="select-icon select-1"></span>
+                            </div>
+                            <h2 th:text="#{view.index.solution1}">云计算</h2>
+                            <p th:text="#{view.index.solution11}">依托于自有的云数据中心，基于专业的云服务实现和提供经验</p>
+                            <p th:text="#{view.index.solution12}">能够针对各户的各种业务提供在线云服务与技术人才</p>
+                        </div>
+                        <div class="item-wrap">
+                            <div class="item-select-mobile ">
+                                <span class="select-icon select-2"></span>
+                            </div>
+                            <h2 th:text="#{view.index.solution2}">大数据</h2>
+                            <p th:text="#{view.index.solution21}">大数据驱动未来发展</p>
+                            <p th:text="#{view.index.solution22}">大数据技术的战略意义不在于掌握庞大的数据信息</p>
+                            <p th:text="#{view.index.solution23}">而在于对这些含有意义的数据进行专业化处理</p>
+                        </div>
+
+                        <div class="item-wrap">
+                            <div class="item-select-mobile ">
+                                <span class="select-icon select-3"></span>
+                            </div>
+                            <h2 th:text="#{view.index.solution3}">电子商务</h2>
+                            <p th:text="#{view.index.solution31}">以电子及电子技术为手段，以商务为核心</p>
+                            <p th:text="#{view.index.solution32}">把原本传统的销售和购物渠道移到互联网上来</p>
+                            <p th:text="#{view.index.solution33}">使生产企业达到全球化、网络化、无形化、个性化、一体化</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="section mt-xl pb-none">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 center">
+                        <h2 class="mb-xl" th:text="#{view.index.titletwo}"></h2>
+                    </div>
+                </div>
+            </div>
+            <ul class="image-gallery sort-destination full-width mb-none suppliers">
+                <li class="isotope-item slider">
+                    <div class="image-gallery-item mb-none">
+                        <form id="solution6" th:action="${#mvc.url('SLC#index').build()}" method="post"><input type="hidden" name="id" value="6"></form>
+                        <a href="javascript:{}" onclick="document.forms['solution6'].submit()">
+                            <span class="thumb-info thumb-info-centered-info thumb-info-no-borders">
+                                <span class="thumb-info-wrapper">
+                                    <img src="http://cdn.hithinksoft.com/home-page/img/index/project.jpg"
+                                         th:src="@{http://cdn.hithinksoft.com/home-page/img/Huaxinhealthcloud.jpg}"
+                                         class="img-responsive" alt="">
+                                    <span class="thumb-info-title">
+                                        <span class="thumb-info-inner"
+                                              th:text="#{view.index.coorperation.text1}"  style="letter-spacing: 2px;"></span>
+                                        <span class="thumb-info-type"
+                                              th:text="#{view.index.coorperationcaseshowdetail}"  style="letter-spacing: 1px;">Project Detail</span>
+                                    </span>
+                                    <span class="thumb-info-action">
+                                        <span class="thumb-info-action-icon"><i
+                                                class="fa fa-link"></i></span>
+                                    </span>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="image-gallery-item mb-none">
+                        <form id="solution7" th:action="${#mvc.url('SLC#index').build()}" method="post"><input type="hidden" name="id" value="7"></form>
+                        <a href="javascript:{}" onclick="document.forms['solution7'].submit()">
+                            <span class="thumb-info thumb-info-centered-info thumb-info-no-borders">
+                                <span class="thumb-info-wrapper">
+                                    <img src="http://cdn.hithinksoft.com/home-page/img/index/project.jpg" th:src="@{http://cdn.hithinksoft.com/home-page/img/Howard.jpg}"
+                                         class="img-responsive" alt="">
+                                    <span class="thumb-info-title">
+                                        <span class="thumb-info-inner"
+                                              th:text="#{view.index.coorperation.text2}" style="letter-spacing: 2px;"></span>
+                                        <span class="thumb-info-type"
+                                              th:text="#{view.index.coorperationcaseshowdetail}"  style="letter-spacing: 1px;">Project Detail</span>
+                                    </span>
+                                    <span class="thumb-info-action">
+                                        <span class="thumb-info-action-icon"><i
+                                                class="fa fa-link"></i></span>
+                                    </span>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="image-gallery-item mb-none">
+                        <form id="solution9" th:action="${#mvc.url('SLC#index').build()}" method="post"><input type="hidden" name="id" value="9"></form>
+                        <a href="javascript:{}" onclick="document.forms['solution9'].submit()">
+                            <span class="thumb-info thumb-info-centered-info thumb-info-no-borders">
+                                <span class="thumb-info-wrapper">
+                                    <img src="http://cdn.hithinksoft.com/home-page/img/index/project.jpg"
+                                         th:src="@{http://cdn.hithinksoft.com/home-page/img/Businessdepartment.jpg}"
+                                         class="img-responsive" alt="">
+                                    <span class="thumb-info-title">
+                                        <span class="thumb-info-inner"
+                                              th:text="#{view.index.coorperation.text3}" style="letter-spacing: 2px;"></span>
+                                        <span class="thumb-info-type"
+                                              th:text="#{view.index.coorperationcaseshowdetail}"  style="letter-spacing: 1px;">Project Detail</span>
+                                    </span>
+                                    <span class="thumb-info-action">
+                                        <span class="thumb-info-action-icon"><i
+                                                class="fa fa-link"></i></span>
+                                    </span>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="image-gallery-item mb-none">
+                        <form id="solution1" th:action="${#mvc.url('SLC#index').build()}" method="post"><input type="hidden" name="id" value="1"></form>
+                        <a href="javascript:{}" onclick="document.forms['solution1'].submit()">
+                            <span class="thumb-info thumb-info-centered-info thumb-info-no-borders">
+                                <span class="thumb-info-wrapper">
+                                    <img src="http://cdn.hithinksoft.com/home-page/img/index/project.jpg"
+                                         th:src="@{http://cdn.hithinksoft.com/home-page/img/TaikangLife.jpg}"
+                                         class="img-responsive" alt="">
+                                    <span class="thumb-info-title">
+                                        <span class="thumb-info-inner"
+                                              th:text="#{view.index.coorperationcaseofTaiKang}" style="letter-spacing: 2px;"></span>
+                                        <span class="thumb-info-type"
+                                              th:text="#{view.index.coorperationcaseshowdetail}"  style="letter-spacing: 1px;">Project Detail</span>
+                                    </span>
+                                    <span class="thumb-info-action">
+                                        <span class="thumb-info-action-icon"><i
+                                                class="fa fa-link"></i></span>
+                                    </span>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="image-gallery-item mb-none">
+                        <form id="solution3" th:action="${#mvc.url('SLC#index').build()}" method="post"><input type="hidden" name="id" value="3"></form>
+                        <a href="javascript:{}" onclick="document.forms['solution3'].submit()">
+                            <span class="thumb-info thumb-info-centered-info thumb-info-no-borders">
+                                <span class="thumb-info-wrapper">
+                                    <img src="http://cdn.hithinksoft.com/home-page/img/index/project.jpg" th:src="@{http://cdn.hithinksoft.com/home-page/img/Hengfeng.jpg}"
+                                         class="img-responsive" alt="">
+                                    <span class="thumb-info-title">
+                                        <span class="thumb-info-inner"
+                                              th:text="#{view.index.coorperationcaseofEVERGROWING}" style="letter-spacing: 2px;"></span>
+                                        <span class="thumb-info-type"
+                                              th:text="#{view.index.coorperationcaseshowdetail}" style="letter-spacing: 1px;">Project Detail</span>
+                                    </span>
+                                    <span class="thumb-info-action">
+                                        <span class="thumb-info-action-icon"><i
+                                                class="fa fa-link"></i></span>
+                                    </span>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="image-gallery sort-destination full-width mb-none suppliers-mobile">
+                <li class="isotope-item slider">
+                    <div class="image-gallery-item mb-none">
+                        <a href="#" th:href="@{/solution/6/show}">
+                            <span class="thumb-info thumb-info-centered-info thumb-info-no-borders">
+                                <span class="thumb-info-wrapper">
+                                    <img src="http://cdn.hithinksoft.com/home-page/img/index/project.jpg"
+                                         th:src="@{http://cdn.hithinksoft.com/home-page/img/Huaxinhealthcloud.jpg}"
+                                         class="img-responsive" alt="">
+                                    <span class="thumb-info-title">
+                                        <span class="thumb-info-inner"
+                                              th:text="#{view.index.coorperation.text1}"  style="letter-spacing: 2px;"></span>
+                                        <span class="thumb-info-type"
+                                              th:text="#{view.index.coorperationcaseshowdetail}"  style="letter-spacing: 1px;">Project Detail</span>
+                                    </span>
+                                    <span class="thumb-info-action">
+                                        <span class="thumb-info-action-icon"><i
+                                                class="fa fa-link"></i></span>
+                                    </span>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="image-gallery-item mb-none">
+                        <a href="#" th:href="@{/solution/7/show}">
+                            <span class="thumb-info thumb-info-centered-info thumb-info-no-borders">
+                                <span class="thumb-info-wrapper">
+                                    <img src="http://cdn.hithinksoft.com/home-page/img/index/project.jpg" th:src="@{http://cdn.hithinksoft.com/home-page/img/Howard.jpg}"
+                                         class="img-responsive" alt="">
+                                    <span class="thumb-info-title">
+                                        <span class="thumb-info-inner"
+                                              th:text="#{view.index.coorperation.text2}" style="letter-spacing: 2px;"></span>
+                                        <span class="thumb-info-type"
+                                              th:text="#{view.index.coorperationcaseshowdetail}"  style="letter-spacing: 1px;">Project Detail</span>
+                                    </span>
+                                    <span class="thumb-info-action">
+                                        <span class="thumb-info-action-icon"><i
+                                                class="fa fa-link"></i></span>
+                                    </span>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="image-gallery-item mb-none">
+                        <a href="#" th:href="@{/solution/9/show}">
+                            <span class="thumb-info thumb-info-centered-info thumb-info-no-borders">
+                                <span class="thumb-info-wrapper">
+                                    <img src="http://cdn.hithinksoft.com/home-page/img/index/project.jpg"
+                                         th:src="@{http://cdn.hithinksoft.com/home-page/img/Businessdepartment.jpg}"
+                                         class="img-responsive" alt="">
+                                    <span class="thumb-info-title">
+                                        <span class="thumb-info-inner"
+                                              th:text="#{view.index.coorperation.text3}" style="letter-spacing: 2px;"></span>
+                                        <span class="thumb-info-type"
+                                              th:text="#{view.index.coorperationcaseshowdetail}"  style="letter-spacing: 1px;">Project Detail</span>
+                                    </span>
+                                    <span class="thumb-info-action">
+                                        <span class="thumb-info-action-icon"><i
+                                                class="fa fa-link"></i></span>
+                                    </span>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="image-gallery-item mb-none">
+                        <a href="#" th:href="@{/solution/1/show}">
+                            <span class="thumb-info thumb-info-centered-info thumb-info-no-borders">
+                                <span class="thumb-info-wrapper">
+                                    <img src="http://cdn.hithinksoft.com/home-page/img/index/project.jpg"
+                                         th:src="@{http://cdn.hithinksoft.com/home-page/img/TaikangLife.jpg}"
+                                         class="img-responsive" alt="">
+                                    <span class="thumb-info-title">
+                                        <span class="thumb-info-inner"
+                                              th:text="#{view.index.coorperationcaseofTaiKang}" style="letter-spacing: 2px;"></span>
+                                        <span class="thumb-info-type"
+                                              th:text="#{view.index.coorperationcaseshowdetail}"  style="letter-spacing: 1px;">Project Detail</span>
+                                    </span>
+                                    <span class="thumb-info-action">
+                                        <span class="thumb-info-action-icon"><i
+                                                class="fa fa-link"></i></span>
+                                    </span>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="image-gallery-item mb-none">
+                        <a href="#" th:href="@{/solution/3/show}">
+                            <span class="thumb-info thumb-info-centered-info thumb-info-no-borders">
+                                <span class="thumb-info-wrapper">
+                                    <img src="http://cdn.hithinksoft.com/home-page/img/index/project.jpg" th:src="@{http://cdn.hithinksoft.com/home-page/img/Hengfeng.jpg}"
+                                         class="img-responsive" alt="">
+                                    <span class="thumb-info-title">
+                                        <span class="thumb-info-inner"
+                                              th:text="#{view.index.coorperationcaseofEVERGROWING}" style="letter-spacing: 2px;"></span>
+                                        <span class="thumb-info-type"
+                                              th:text="#{view.index.coorperationcaseshowdetail}" style="letter-spacing: 1px;">Project Detail</span>
+                                    </span>
+                                    <span class="thumb-info-action">
+                                        <span class="thumb-info-action-icon"><i
+                                                class="fa fa-link"></i></span>
+                                    </span>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 center mt-xl">
+                    <img class="img-responsive display-inline-block mt-xl"
+                         src="http://cdn.hithinksoft.com/home-page/img/index/map-color-2.png"
+                         th:src="@{http://cdn.hithinksoft.com/home-page/img/index/map-color-2.png}" title="Map">
+                </div>
+            </div>
+        </div>
+        <section class="parallax section section-parallax section-center mt-none mb-none"
+                 data-stellar-background-ratio="0.5"
+                 th:style="'background-image: url(' +@{http://cdn.hithinksoft.com/home-page/img/index/Shading.png}+');'">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <h2 th:text="#{view.index.evaluationofcooperativeenterprise}"></h2>
+
+                        <div class="owl-carousel owl-theme nav-bottom rounded-nav"
+                             data-plugin-options='{&quot;items&quot;: 1, &quot;autoplay&quot;: true,&quot;loop&quot;: true,&quot;autoplayTimeout&quot;: 6000}'>
+                            <div>
+                                <div class="col-md-12">
+                                    <div class="testimonial testimonial-style-2 testimonial-with-quotes mb-none">
+                                        <div class="testimonial-author">
+                                            <img src="http://cdn.hithinksoft.com/home-page/img/index/Citibankcircle.png"
+                                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/index/Citibankcircle.png}"
+                                                 class="img-responsive img-circle" alt="">
+                                        </div>
+                                        <blockquote>
+                                            <p th:utext="#{view.index.evaluationofcitibank}"></p>
+                                        </blockquote>
+                                        <div class="testimonial-author">
+                                            <p><strong
+                                                    th:text="#{view.index.citibank}"></strong><span
+                                                    th:text="#{view.index.citibankenglishcompanyname}"></span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-md-12">
+                                    <div class="testimonial testimonial-style-2 testimonial-with-quotes mb-none">
+                                        <div class="testimonial-author">
+                                            <img src="http://cdn.hithinksoft.com/home-page/img/index/trafficcircle.png"
+                                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/index/SAPcircle.png}"
+                                                 class="img-responsive img-circle" alt="">
+                                        </div>
+                                        <blockquote>
+                                            <p th:utext="#{view.index.evaluationofsap}"></p>
+                                        </blockquote>
+                                        <div class="testimonial-author">
+                                            <p><strong th:text="#{view.index.sap}"></strong><span
+                                                    th:text="#{view.index.saplishcompanyname}"></span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-md-12">
+                                    <div class="testimonial testimonial-style-2 testimonial-with-quotes mb-none">
+                                        <div class="testimonial-author">
+                                            <img src="http://cdn.hithinksoft.com/home-page/img/index/Citibankcircle.png"
+                                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/index/IBMcircle.png}"
+                                                 class="img-responsive img-circle" alt="">
+                                        </div>
+                                        <blockquote>
+                                            <p th:utext="#{view.index.evaluationofibm}"></p>
+                                        </blockquote>
+                                        <div class="testimonial-author">
+                                            <p><strong
+                                                    th:text="#{view.index.ibm}"></strong><span
+                                                    th:text="#{view.index.ibmenglishcompanyname}"></span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-md-12">
+                                    <div class="testimonial testimonial-style-2 testimonial-with-quotes mb-none">
+                                        <div class="testimonial-author">
+                                            <img src="http://cdn.hithinksoft.com/home-page/img/index/trafficcircle.png"
+                                                 th:src="@{/img/index/trafficcircle.png}"
+                                                 class="img-responsive img-circle" alt="">
+                                        </div>
+                                        <blockquote>
+                                            <p th:utext="#{view.index.evaluationofBCM}"></p>
+                                        </blockquote>
+                                        <div class="testimonial-author">
+                                            <p><strong th:text="#{view.index.bcm}"></strong><span
+                                                    th:text="#{view.index.bcmenglishcompanyname}"></span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="container" style="margin-top: 100px">
+            <ul class="image-gallery sort-destination full-width mb-none">
+                <li class="isotope-item">
+                    <div class="feature-box" style="height: 100px;text-align: center">
+                        <a href="#" th:href="@{http://www.asiainfo.com.cn/}" th:target="_blank">
+                            <img src="" class="img-responsive img-suppliers"
+                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/index/logo/asiainfo.png}">
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="feature-box" style="height: 100px;text-align: center">
+                        <a href="#" th:href="@{https://www.citibank.com.cn/sim/index.htm}"
+                           th:target="_blank">
+                            <img src="" class="img-responsive img-suppliers"
+                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/index/logo/citibank.png}">
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="feature-box" style="height: 100px;text-align: center">
+                        <a href="#" th:href="@{http://www.bankcomm.com/BankCommSite/default.shtml}"
+                           th:target="_blank">
+                            <img src="" class="img-responsive img-suppliers"
+                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/index/logo/jiaotongbank.png}">
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="feature-box" style="height: 100px;text-align: center">
+                        <a href="#" th:href="@{http://www.ceair.com/}" th:target="_blank">
+                            <img src="" class="img-responsive img-suppliers"
+                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/index/logo/eastern.png}">
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="feature-box" style="height: 100px;text-align: center">
+                        <a href="#" th:href="@{http://www.sony.com.cn/index.htm}"
+                           th:target="_blank">
+                            <img src="" class="img-responsive img-suppliers"
+                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/index/logo/sony.png}">
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="image-gallery sort-destination full-width mb-none">
+                <li class="isotope-item">
+                    <div class="feature-box" style="height: 100px;text-align: center">
+                        <a href="#" th:href="@{http://www8.hp.com/cn/zh/home.html}"
+                           th:target="_blank">
+                            <img src="" class="img-responsive img-suppliers"
+                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/index/logo/hp.png}">
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="feature-box" style="height: 100px;text-align: center">
+                        <a href="#" th:href="@{http://www.icbc.com.cn/icbc/}" th:target="_blank">
+                            <img src="" class="img-responsive img-suppliers"
+                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/index/logo/gongshabank.png}">
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="feature-box" style="height: 100px;text-align: center">
+                        <a href="#" th:href="@{https://www.aliyun.com/}" th:target="_blank">
+                            <img src="" class="img-responsive img-suppliers"
+                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/index/logo/aliyun.png}">
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="feature-box" style="height: 100px;text-align: center">
+                        <a href="#" th:href="@{http://www.tk.cn/}" th:target="_blank">
+                            <img src="" class="img-responsive img-suppliers"
+                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/index/logo/taikang.png}">
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="feature-box" style="height: 100px;text-align: center">
+                        <a href="#" th:href="@{http://www.bankofdl.com/Site/Home/CN}"
+                           th:target="_blank">
+                            <img src="" class="img-responsive img-suppliers"
+                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/index/logo/dalianbank.png}">
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="image-gallery sort-destination full-width mb-none">
+                <li class="isotope-item">
+                    <div class="feature-box" style="height: 80px;text-align: center">
+                        <a href="#" th:href="@{http://www.boc.cn/}" th:target="_blank">
+                            <img src="" class="img-responsive img-suppliers"
+                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/index/logo/chinabank.png}">
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="feature-box" style="height: 80px;text-align: center">
+                        <a href="#" th:href="@{http://www.airchina.com.cn/}" th:target="_blank">
+                            <img src="" class="img-responsive img-suppliers"
+                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/index/logo/airchina.png}">
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="feature-box" style="height: 80px;text-align: center">
+                        <a href="#" th:href="@{http://www.huawei.com/cn/}" th:target="_blank">
+                            <img src="" class="img-responsive img-suppliers"
+                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/index/logo/huawei.png}">
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="feature-box" style="height: 80px;text-align: center">
+                        <a href="#" th:href="@{http://www.emc.com/zh-cn/index.htm}"
+                           th:target="_blank">
+                            <img src="" class="img-responsive img-suppliers"
+                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/index/logo/emc.png}">
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="feature-box" style="height: 80px;text-align: center">
+                        <a href="#" th:href="@{http://www1.ap.dell.com/}" th:target="_blank">
+                            <img src="" class="img-responsive img-suppliers"
+                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/index/logo/dell.png}">
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="image-gallery sort-destination full-width mb-none">
+                <li class="isotope-item">
+                    <div class="feature-box" style="height: 100px;text-align: center">
+                        <a href="#" th:href="@{http://www.fujitsu.com/cn/}" th:target="_blank">
+                            <img src="" class="img-responsive img-suppliers"
+                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/index/logo/fujitsu.png}">
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="feature-box"
+                         style="height: 100px;text-align: center;padding-top: 20px;">
+                        <a href="#" th:href="@{http://cn.nec.com/}" th:target="_blank">
+                            <img src="" class="img-responsive img-suppliers"
+                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/index/logo/nec.png}">
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="feature-box"
+                         style="height: 100px;text-align: center;padding-top: 15px;">
+                        <a href="#" th:href="@{http://bank.pingan.com/}" th:target="_blank">
+                            <img src="" class="img-responsive img-suppliers"
+                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/index/logo/pinganbank.png}">
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="feature-box"
+                         style="height: 100px;text-align: center;padding-top: 15px;">
+                        <a href="#" th:href="@{http://www.transwarp.cn/}" th:target="_blank">
+                            <img src="" class="img-responsive img-suppliers"
+                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/index/logo/transwarp.png}">
+                        </a>
+                    </div>
+                </li>
+                <li class="isotope-item">
+                    <div class="feature-box"
+                         style="height: 100px;text-align: center;padding-top: 15px;">
+                        <a href="#" th:href="@{http://www.ibm.com/cn-zh/}" th:target="_blank">
+                            <img src="" class="img-responsive img-suppliers"
+                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/index/logo/ibm.png}">
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="container">
+            <div class="row mt-xl">
+                <div class="col-md-12 center">
+                    <h2 class="mt-xl mb-xl" th:text="#{view.index.recentnews}"></h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4" th:each="recent,iterStat:${recent}">
+                    <div class="recent-posts mt-xl">
+                        <article class="post">
+                            <div class="col-md-2">
+                                <div class="date">
+                                    <span class="day"
+                                          th:text="${dates.day(recent.createdAt)}">10</span>
+                                    <span class="month"
+                                          th:text="${dates.monthNameShort(recent.createdAt)}">Jan</span>
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <div>
+                                    <h4 style="overflow: hidden;height: 55px;"><a href="#"
+                                                                                  th:href="${#mvc.url('NSC#show').arg(0,recent.id).build()}"
+                                                                                  th:text="${recent.title}"></a>
+                                    </h4>
+
+                                    <div style="overflow: hidden;height: 120px;"
+                                         th:utext="${recent.digest}"></div>
+                                </div>
+                                <div class="post-meta" style="padding-top: 10px;">
+                                    <span></span>
+                                    <a href="#" th:href="${#mvc.url('NSC#show').arg(0,recent.id).build()}"
+                                       class="btn btn-xs btn-primary pull-left"
+                                       th:text="#{view.newsfocus.index.readmore}">Read more...</a>
+                                </div>
+                                <!--<a th:href="${#mvc.url('NSC#show').arg(0,recent.id).build()}"-->
+                                   <!--class="btn btn-borders btn-default mt-md mb-xl"-->
+                                   <!--th:text="#{view.index.readmore}"></a>-->
+                            </div>
+
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

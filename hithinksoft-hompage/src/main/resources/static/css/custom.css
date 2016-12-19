@@ -1,0 +1,14 @@
+/* Add here all your CSS customizations */
+.font-style-normal {
+    font-style: normal;
+}
+
+.p-style p{
+    margin: 0;
+    line-height: 3;
+}
+
+.li-style li{
+    font-size: small;
+    margin-top: 10px;
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="admin/layouts/main">
+<head>
+    <meta charset="UTF-8">
+    <title>new</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-header">
+        <ol class="breadcrumb">
+            <li><a th:href="@{/admin/solutiongroups}" th:text="#{view.main.layouts.main.solutionType}"></a></li>
+            <li class="active" th:text="*{id}?#{view.admin.solutiongroups.header.update}:#{view.admin.solutiongroups.header.create}"></li>
+        </ol>
+    </div>
+    <div class="section-body contain-lg">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <form class="form-horizontal" role="form"
+                          th:action="@{/admin/solutionGroups}"
+                          th:method="post">
+                        <div class="card-head style-primary">
+                            <header th:text="*{id}?#{view.admin.solutiongroups.header.update}:#{view.admin.solutiongroups.header.create}"></header>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <input type="hidden" th:name="id" th:value="${solutionGroup.id}?${solutionGroup.id}">
+                                <label for="name" class="col-sm-2 control-label"
+                                       th:text="#{view.main.layouts.main.moduleName}">方案类别名称</label>
+
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="name" th:name="name"
+                                           th:value="${solutionGroup.name}?${solutionGroup.name}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-actionbar text-center">
+                            <button type="button" class="btn ink-reaction btn-primary" name="affirm"
+                                    th:text="#{view.admin.solution.affirm}">确认
+                            </button>
+                            <a href="#" th:href="${#mvc.url('SGIC#index').build()}">
+                                <button type="button" class="btn ink-reaction btn-primary"
+                                        th:text="#{view.admin.solution.back}">返回
+                                </button>
+                            </a>
+                        </div>
+                    </form>
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header" style="text-align: left">
+                                    <h4 class="model-title" id="myModalLabel" style="display:inline"
+                                        th:text="#{view.admin.solution.message}">提示信息</h4>
+                                    <button type="button" class="close" data-dismiss="modal"
+                                            aria-hidden="true">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p style="text-align: center"
+                                       th:text="#{view.admin.solution.commit}">确认提交?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default"
+                                            data-dismiss="modal"
+                                            th:text="#{view.admin.solution.esc}">取消
+                                    </button>
+                                    <button type="button" class="btn btn-primary" name="reconfirm"
+                                            th:text="#{view.admin.solution.affirm}">确认
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+<script layout:fragment="script">
+    $("button[name='affirm']").on("click", function () {
+        var $form = $(this).closest("form");
+        $("#myModal").modal();
+        $("button[name='reconfirm']").on("click", function () {
+            $form.trigger('submit');
+        });
+    });
+</script>
+</html>

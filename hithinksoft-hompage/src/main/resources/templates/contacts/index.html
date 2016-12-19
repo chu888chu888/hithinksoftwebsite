@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main">
+<head>
+    <title>contactus</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="body">
+        <div role="main" class="main">
+            <section class="page-header page-header-light page-header-more-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1><span th:text="#{view.layouts.main.contactus}"></span> <i
+                                    class="font-style-normal">Contact
+                                Us</i></h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="owl-carousel owl-theme mb-none"
+                             data-plugin-options='{&quot;items&quot;: 1, &quot;animateOut&quot;: &quot;fadeOut&quot;, &quot;autoplay&quot;: true, &quot;autoplayTimeout&quot;: 3000}'>
+                            <div>
+                                <img alt="" class="img-responsive img-rounded"
+                                     src="http://cdn.hithinksoft.com/home-page/img/our-office-4.jpg"
+                                     th:src="@{http://cdn.hithinksoft.com/home-page/img/our-office-4.jpg}">
+                            </div>
+                            <div>
+                                <img alt="" class="img-responsive img-rounded"
+                                     src="http://cdn.hithinksoft.com/home-page/img/our-office-5.jpg"
+                                     th:src="@{http://cdn.hithinksoft.com/home-page/img/our-office-5.jpg}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="tall">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-7">
+                            <h4><span th:text="#{view.joinus.contactus.online}">online</span><strong
+                                    th:text="#{view.joinus.contactus.submit}">submit</strong></h4>
+
+                            <form novalidate="novalidate"
+                                  th:action="${#mvc.url('CIC#create').build()}"
+                                  id="contactRequestForm"
+                                  th:object="${contactRequest}" method="post">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <div>
+                                                <label th:text="#{view.joinus.contactus.enterprisename}">enterprisename</label>
+                                                <input type="text" value=""
+                                                       data-msg-required="Please enter your name."
+                                                       class="form-control" name="enterpriseName"
+                                                       th:field="*{enterpriseName}"
+                                                       style="border-radius:5px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div>
+                                                <label th:text="#{view.joinus.contactus.contact}">contact</label>
+                                                <input type="text" value=""
+                                                       data-msg-required="Please enter your email address."
+                                                       data-msg-email="Please enter a valid email address."
+                                                       class="form-control" name="contact"
+                                                       th:field="*{contact}"
+                                                       style="border-radius:5px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <div>
+                                                <label th:text="#{view.joinus.contactus.telephone}">telephone</label>
+                                                <input type="text" value=""
+                                                       data-msg-required="Please enter your name."
+                                                       class="form-control" name="telephone"
+                                                       th:field="*{telephone}"
+                                                       style="border-radius:5px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div>
+                                                <label th:text="#{view.joinus.contactus.email}">email</label>
+                                                <input type="email" value=""
+                                                       data-msg-required="Please enter your email address."
+                                                       data-msg-email="Please enter a valid email address."
+                                                       class="form-control" name="email"
+                                                       th:field="*{email}"
+                                                       style="border-radius:5px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <div>
+                                                <label th:text="#{view.joinus.contactus.website}">website</label>
+                                                <input type="text" value=""
+                                                       data-msg-required="Please enter the subject."
+                                                       class="form-control" name="subject"
+                                                       th:field="*{website}"
+                                                       style="border-radius:5px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <div>
+                                                <label th:text="#{view.joinus.contactus.requirementdescription}">requirementdescription</label>
+                                                <textarea
+                                                        data-msg-required="Please enter your message."
+                                                        rows="10"
+                                                        class="form-control"
+                                                        name="requirementDescription"
+                                                        th:field="*{requirementDescription}"
+                                                        style="border-radius:5px;"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary btn-lg mb-xlg"
+                                            onclick="saveContactRequest()"
+                                            data-loading-text="Loading..."
+                                            style="border-radius:5px;">提交信息
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+
+                            <h4><span th:text="#{view.joinus.contactus.company}">Our</span><strong
+                                    th:text="#{view.joinus.contactus.position}">Location</strong>
+                            </h4>
+
+                            <!-- Google Maps - Go to the bottom of the page to change settings and map location. -->
+                            <div id="baidumaps" class="google-map small">
+                            </div>
+
+                            <ul class="list list-icons list-icons-style-3 mt-xlg">
+                                <li><i class="fa fa-map-marker"></i> <strong
+                                        th:text="#{view.joinus.contactus.detailedaddress}">Address:</strong> <span
+                                        th:text="#{view.joinus.contactus.detailedaddressone}">1234 Street Name, City Name,
+                                United States</span>
+                                </li>
+                                <li><i class="fa fa-user"></i> <strong
+                                        th:text="#{view.joinus.contactus.contact}">user:</strong>
+                                    <span th:text="#{view.joinus.contactus.contactone}">name</span>
+                                </li>
+                                <li><i class="fa fa-phone"></i> <strong
+                                        th:text="#{view.joinus.contactus.telephone}">Phone:</strong> <span
+                                        th:text="#{view.joinus.contactus.telephoneone}">(123) 456-789</span>
+                                </li>
+                                <li><i class="fa fa-envelope"></i> <strong
+                                        th:text="#{view.joinus.contactus.email}">Email:</strong> <a
+                                        href="mailto:mail@example.com"
+                                        th:text="#{view.joinus.contactus.emailone}">mail@example.com</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+                <hr class="tall">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4><span th:text="#{view.joinus.contactus.work}">Work</span><strong
+                                th:text="#{view.joinus.contactus.environment}">Space</strong></h4>
+
+                        <div class="owl-carousel owl-theme show-nav-title mt-xlg mb-none"data-plugin-lightbox
+                             data-plugin-options='{&quot;responsive&quot;: {&quot;0&quot;: {&quot;items&quot;: 3}, &quot;479&quot;: {&quot;items&quot;: 3}, &quot;768&quot;: {&quot;items&quot;: 3}, &quot;979&quot;: {&quot;items&quot;: 3}, &quot;1199&quot;: {&quot;items&quot;: 3}}, &quot;margin&quot;: 10, &quot;loop&quot;: true, &quot;nav&quot;: true, &quot;dots&quot;: false, &quot;autoplay&quot;: true, &quot;autoplayTimeout&quot;: 3000,&quot;delegate&quot;: &quot;a&quot;, &quot;type&quot;: &quot;image&quot;}'>
+                            <div>
+                                <a class="img-thumbnail mb-xl" href="http://cdn.hithinksoft.com/home-page/img/our-office-1.jpg"
+                                   th:href="@{http://cdn.hithinksoft.com/home-page/img/our-office-b1.jpg}"
+                                   data-plugin-options='{&quot;type&quot;:&quot;image&quot;}'>
+                                    <img class="img-responsive" src="http://cdn.hithinksoft.com/home-page/img/our-office-1.jpg"
+                                         th:src="@{http://cdn.hithinksoft.com/home-page/img/our-office-1.jpg}" alt="Office">
+                                </a>
+                            </div>
+                            <div>
+                                <a class="img-thumbnail mb-xl" href="http://cdn.hithinksoft.com/home-page/img/our-office-2.jpg"
+                                   th:href="@{http://cdn.hithinksoft.com/home-page/img/our-office-b2.jpg}"
+                                   data-plugin-options='{&quot;type&quot;:&quot;imag&quot;}'>
+                                    <img class="img-responsive" src="http://cdn.hithinksoft.com/home-page/img/our-office-2.jpg"
+                                         th:src="@{http://cdn.hithinksoft.com/home-page/img/our-office-2.jpg}" alt="Office">
+                                </a>
+                            </div>
+                            <div>
+                                <a class="img-thumbnail mb-xl" href="http://cdn.hithinksoft.com/home-page/img/our-office-3.jpg"
+                                   th:href="@{http://cdn.hithinksoft.com/home-page/img/our-office-b3.jpg}"
+                                   data-plugin-options='{&quot;type&quot;:&quot;image&quot;}'>
+                                    <img class="img-responsive" src="http://cdn.hithinksoft.com/home-page/img/our-office-3.jpg"
+                                         th:src="@{http://cdn.hithinksoft.com/home-page/img/our-office-3.jpg}" alt="Office">
+                                </a>
+                            </div>
+                            <div>
+                                <a class="img-thumbnail mb-xl" href="http://cdn.hithinksoft.com/home-page/img/our-office-1.jpg"
+                                   th:href="@{http://cdn.hithinksoft.com/home-page/img/our-office-b6.jpg}"
+                                   data-plugin-options='{&quot;type&quot;:&quot;image&quot;}'>
+                                    <img class="img-responsive" src="http://cdn.hithinksoft.com/home-page/img/our-office-1.jpg"
+                                         th:src="@{http://cdn.hithinksoft.com/home-page/img/our-office-6.jpg}" alt="Office">
+                                </a>
+                            </div>
+                            <div>
+                                <a class="img-thumbnail mb-xl" href="http://cdn.hithinksoft.com/home-page/img/our-office-2.jpg"
+                                   th:href="@{http://cdn.hithinksoft.com/home-page/img/our-office-b7.jpg}"
+                                   data-plugin-options='{&quot;type&quot;:&quot;imag&quot;}'>
+                                    <img class="img-responsive" src="http://cdn.hithinksoft.com/home-page/img/our-office-2.jpg"
+                                         th:src="@{http://cdn.hithinksoft.com/home-page/img/our-office-7.jpg}" alt="Office">
+                                </a>
+                            </div>
+                            <div>
+                                <a class="img-thumbnail mb-xl" href="http://cdn.hithinksoft.com/home-page/img/our-office-3.jpg"
+                                   th:href="@{http://cdn.hithinksoft.com/home-page/img/our-office-b8.jpg}"
+                                   data-plugin-options='{&quot;type&quot;:&quot;image&quot;}'>
+                                    <img class="img-responsive" src="http://cdn.hithinksoft.com/home-page/img/our-office-3.jpg"
+                                         th:src="@{http://cdn.hithinksoft.com/home-page/img/our-office-8.jpg}" alt="Office">
+                                </a>
+                            </div>
+                            <div>
+                                <a class="img-thumbnail mb-xl" href="http://cdn.hithinksoft.com/home-page/img/our-office-1.jpg"
+                                   th:href="@{http://cdn.hithinksoft.com/home-page/img/our-office-b9.jpg}"
+                                   data-plugin-options='{&quot;type&quot;:&quot;image&quot;}'>
+                                    <img class="img-responsive" src="http://cdn.hithinksoft.com/home-page/img/our-office-1.jpg"
+                                         th:src="@{http://cdn.hithinksoft.com/home-page/img/our-office-9.jpg}" alt="Office">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="modal fade" id="contactRequestTip" role="dialog" aria-labelledby="tipModalForm"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" th:text="#{view.joinus.contactus.modal.title}">提示信息</h3>
+                </div>
+                <div class="modal-body">
+                    <h6 id="tipMessage"></h6>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" data-dismiss="modal"
+                            th:text="#{view.joinus.contactus.modal.confirm}">确认
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=8yjT9uTa4MfF5oLzryYsZGGT"></script>
+    <script th:inline="javascript">
+
+        function saveContactRequest() {
+            $("span").remove(".help-block");
+            $.ajax({
+                type: "POST",
+                url: "/contacts/create",
+                dataType: "json",
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    enterpriseName: $("input[name=enterpriseName]").val(),
+                    contact: $("input[name=contact]").val(),
+                    telephone: $("input[name=telephone]").val(),
+                    email: $("input[name=email]").val(),
+                    website: $("input[name=website]").val(),
+                    requirementDescription: $("textarea[name=requirementDescription]").val()
+
+                }),
+                success: function (data) {
+                    if (data.message) {
+                        $.each(data, function (index, element) {
+                            $("input[name=" + index
+                              + "]").before('<span class="help-block" style="display:inline;color:#ff0000">'
+                                            + element + '</span>');
+                            $("textarea[name=" + index
+                              + "]").before('<span class="help-block" style="display:inline;color:#ff0000">'
+                                            + element + '</span>');
+                        });
+                    } else {
+                        tip([[#{view.joinus.contactus.submit.success}]]);
+                        $("#contactRequestForm input").val("");
+                        $("#contactRequestForm textarea").val("");
+                    }
+                },
+                error: function (e) {
+                    tip([[#{view.joinus.contactus.submit.fail}]]);
+                }
+            });
+        }
+
+        function tip(msg) {
+            $("#tipMessage").text(msg);
+            $("#contactRequestTip").modal();
+        }
+
+        //创建和初始化地图函数：
+        function initMap() {
+            createMap();//创建地图
+            setMapEvent();//设置地图事件
+            addMapControl();//向地图添加控件
+            addMapOverlay();//向地图添加覆盖物
+        }
+        function createMap() {
+            map = new BMap.Map("baidumaps");
+            map.centerAndZoom(new BMap.Point(121.060619, 31.300238), 19);
+        }
+        function setMapEvent() {
+            map.enableScrollWheelZoom();
+            map.enableKeyboard();
+            map.enableDragging();
+            map.enableDoubleClickZoom()
+        }
+        function addClickHandler(target, window) {
+            target.addEventListener("click", function () {
+                target.openInfoWindow(window);
+            });
+        }
+        function addMapOverlay() {
+            var title = [[#{view.layouts.main.title}]];
+            var address = [[#{view.joinus.contactus.detailedaddressone}]];
+            var markers = [
+                {
+                    content: address,
+                    title: title,
+                    imageOffset: {width: -46, height: -21},
+                    position: {lat: 31.300238, lng: 121.060619}
+                },
+            ];
+            for (var index = 0; index < markers.length; index++) {
+                var point = new BMap.Point(markers[index].position.lng,
+                                           markers[index].position.lat);
+                var marker = new BMap.Marker(point, {
+                    icon: new BMap.Icon("http://api.map.baidu.com/lbsapi/createmap/images/icon.png",
+                                        new BMap.Size(20, 25), {
+                                imageOffset: new BMap.Size(markers[index].imageOffset.width,
+                                                           markers[index].imageOffset.height)
+                            })
+                });
+                var label = new BMap.Label("", {offset: new BMap.Size(25, 5)});
+                label.setStyle({
+                    border: "0"
+                });
+                var opts = {
+                    width: 200,
+                    title: markers[index].title,
+                    enableMessage: false
+                };
+                var infoWindow = new BMap.InfoWindow(markers[index].content, opts);
+                marker.setLabel(label);
+                addClickHandler(marker, infoWindow);
+                map.addOverlay(marker);
+            }
+            ;
+            var labels = [];
+            for (var index = 0; index < labels.length; index++) {
+                var opt = {
+                    position: new BMap.Point(labels[index].position.lng, labels[index].position.lat)
+                };
+                var label = new BMap.Label(labels[index].content, opt);
+                map.addOverlay(label);
+            }
+            ;
+            var plOpts = [];
+            var plPath = [];
+            for (var index = 0; index < plOpts.length; index++) {
+                var polyline = new BMap.Polyline(plPath[index], plOpts[index]);
+                map.addOverlay(polyline);
+            }
+        }
+        //向地图添加控件
+        function addMapControl() {
+            var scaleControl = new BMap.ScaleControl({anchor: BMAP_ANCHOR_BOTTOM_LEFT});
+            scaleControl.setUnit(BMAP_UNIT_IMPERIAL);
+            map.addControl(scaleControl);
+            var navControl = new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_LEFT, type: 0});
+            map.addControl(navControl);
+        }
+        var map;
+        initMap();
+    </script>
+
+</section>
+</body>
+</html>

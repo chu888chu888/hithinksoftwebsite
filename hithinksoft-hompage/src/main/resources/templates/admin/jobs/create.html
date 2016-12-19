@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="admin/layouts/main">
+<head>
+    <meta charset="UTF-8">
+    <title>new</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-header">
+        <ol class="breadcrumb">
+            <li><a th:href="@{/admin/jobs}" th:text="#{view.layouts.main.menu-jobs}"></a></li>
+            <li class="active" th:text="*{id}?#{view.admin.jobs.header.update}:#{view.admin.jobs.header.create}"></li>
+        </ol>
+    </div>
+    <div class="section-body contain-lg">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <form class="form-horizontal" role="form" th:action="@{/admin/jobs}"
+                          th:method="post"th:object="${job}" modelAttribute="job">
+                        <div class="card-head style-primary">
+                            <header th:text="*{id}?#{view.admin.jobs.header.update}:#{view.admin.jobs.header.create}"></header>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group" style="margin-bottom: 0px" th:if="*{id}">
+                                <input type="number" th:name="id" hidden="hidden" readonly th:value="*{id}">
+                            </div>
+                            <div class="form-group" th:attrappend="class=${#fields.hasErrors('jobName')?' has-error':''}">
+                                <label th:for="*{jobName}" class="col-sm-2 control-label" th:text="#{view.admin.jobs.jobname}">职位名称</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="jobName" th:field="*{jobName}" th:value="*{jobName}?*{jobName}">
+                                    <span th:if="${#fields.hasErrors('jobName')}" th:errors="*{jobName}"
+                                          class="help-block"></span>
+                                </div>
+                            </div>
+                            <div class="form-group" th:attrappend="class=${#fields.hasErrors('location')?' has-error':''}">
+                                <label th:for="*{location}" class="col-sm-2 control-label" th:text="#{view.admin.jobs.location}">工作地点</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="location" th:field="*{location}" th:value="*{location}?*{location}">
+                                    <span th:if="${#fields.hasErrors('location')}" th:errors="*{location}"
+                                          class="help-block" ></span>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 20px" th:attrappend="class=${#fields.hasErrors('numberRequirement')?' has-error':''}">
+                                <label for="numberRequirement" class="col-sm-2 control-label" th:text="#{view.admin.jobs.numberRequiremen}">需求人数</label>
+                                <div class="col-sm-9">
+                                    <input type="number" class="form-control" id="numberRequirement" th:name="numberRequirement" th:value="*{numberRequirement}?*{numberRequirement}" th:min="0">
+                                    <span th:if="${#fields.hasErrors('numberRequirement')}" th:errors="*{numberRequirement}"
+                                          class="help-block"></span>
+                                </div>
+                            </div>
+                            <div class="form-group" th:attrappend="class=${#fields.hasErrors('jobContent')?' has-error':''}">
+                                <label for="jobContent" class="col-sm-2 control-label" th:text="#{view.admin.jobs.jobcontent}">工作内容</label>
+                                <div class="col-sm-9" id="jobContent">
+                                    <span th:if="${#fields.hasErrors('jobContent')}" th:errors="*{jobContent}"
+                                          class="help-block"></span>
+                                </div>
+                            </div>
+                            <div class="form-group" th:if="${job.createdAt}">
+                                <label for="createdAt" class="col-sm-2 control-label" th:text="#{view.admin.jobs.cteatedat}">创建时间</label>
+                                <div class="col-sm-9">
+                                    <input type="datetime" class="form-control" id="createdAt" th:name="createdAt" readonly th:value="${#dates.format(job.createdAt,'yyyy-MM-dd HH:mm:ss')}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-actionbar text-center">
+                            <button type="button" class="btn ink-reaction btn-primary" name="affirm" th:text="#{view.admin.jobs.affirm}">确认</button>
+                            <a href="#" th:href="${#mvc.url('JIC#index').build()}"><button type="button" class="btn ink-reaction btn-primary" th:text="#{view.admin.jobs.return}">返回</button></a>
+                        </div>
+                    </form>
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="model-title" id="myModalLabel" style="display:inline" th:text="${job.id}?#{view.admin.jobs.updatepreview}:#{view.admin.jobs.createpreview}"></h4>
+                                    <button type="button" class="close" data-dismiss="modal"
+                                            aria-hidden="true">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <label id="job"></label>
+                                    <div style="margin-bottom: 5px">
+                                        <p style="display:inline" th:text="#{view.admin.jobs.location}"></p>
+                                        <p style="display:inline" id="place"></p>
+                                    </div>
+                                    <div style="margin-bottom: 5px">
+                                        <p style="display:inline" th:text="#{view.admin.jobs.numberRequiremen}"></p>
+                                        <p style="display:inline" id="people"></p>
+                                        <p style="display:inline" th:text="#{view.admin.jobs.people}"></p>
+                                    </div>
+                                    <div id="jobDuties"></div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" th:text="#{view.admin.jobs.esc}">取消</button>
+                                    <button type="button" class="btn btn-primary" name="reconfirm" th:text="${job.id}?#{view.admin.jobs.updatesubmit}:#{view.admin.jobs.createsubmit}"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+<script layout:fragment="script">
+    var ue = UE.getEditor('jobContent',{
+        toolbars: [
+            ['fullscreen','source','|','undo','redo','|','bold','italic','underline','|','justifyleft',
+                'justifycenter','justifyright','justifyjustify','|','insertorderedlist','insertunorderedlist']
+        ],
+        initialFrameWidth: '100%',
+        textarea:"jobContent"
+    });
+    if([[${job.jobContent}]])
+        ue.ready(function() {
+            ue.setContent([[${job.jobContent}]]);
+        });
+    $("button[name='affirm']").on("click", function () {
+        var $form = $(this).closest("form");
+        $("#job").text($("#jobName").val());
+        $("#place").text($("#location").val());
+        $("#jobDuties").html(ue.getContent());
+        if($("#numberRequirement").val()!=0){
+            $("#people").text($("#numberRequirement").val());
+            $("#people").closest("div").show();
+        }else{
+            $("#people").closest("div").hide();
+        }
+        $("#myModal").modal();
+        $("button[name='reconfirm']").on("click",function(){
+            $form.trigger('submit');
+        });
+    });
+</script>
+</html>

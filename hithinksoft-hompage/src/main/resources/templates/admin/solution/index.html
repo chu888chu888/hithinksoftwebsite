@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="admin/layouts/main">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="section-header">
+        <ol class="breadcrumb">
+            <li class="active" th:text="#{view.layouts.main.solution}">解决方案列表</li>
+        </ol>
+    </div>
+    <div class="section-body contain-lg">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="section-action">
+                        <div class="section-floating-action-row">
+                            <a class="btn ink-reaction btn-floating-action btn-primary" th:href="@{/admin/solutions/create}"
+                               th:attr="data-original-title=#{view.main.layouts.main.addsolution}"
+                               data-toggle="tooltip" data-placement="top">
+                                <i class="md md-add"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center"
+                                        th:text="#{view.main.layouts.main.solutionName}">方案名称
+                                    </th>
+                                    <th class="text-center"
+                                        th:text="#{view.main.layouts.main.solutionType}">方案类别
+                                    </th>
+                                    <th class="text-center"
+                                        th:text="#{view.main.layouts.main.solutionOperation}">操作
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="text-center" th:each="solution,iterStat:${solution}">
+                                    <td th:text="${iterStat.index+1}">1</td>
+                                    <td th:text="${solution.title}"></td>
+                                    <td th:text="${solution.solutionGroup.name}"></td>
+                                    <td>
+                                        <form action="#"
+                                              th:action="${#mvc.url('SIC#delete').arg(0,solution.id).build()}"
+                                              method="post">
+                                            <a href="#"
+                                               th:href="${#mvc.url('SCC#editor').arg(0,solution.id).build()}">
+                                                <button type="button" class="btn btn-icon-toggle"
+                                                        name="editornow"
+                                                        data-toggle="tooltip" data-placement="top"
+                                                        title="Editor"><i
+                                                        class="fa fa-pencil"></i></button>
+                                            </a>
+                                            <input type="hidden" name="_method" value="delete"/>
+                                            <button type="button" class="btn btn-icon-toggle"
+                                                    name="delete"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    title="Delete"><i
+                                                    class="md md-delete"></i></button>
+                                        </form>
+                                        <div class="modal fade" id="myModal" tabindex="-1"
+                                             role="dialog"
+                                             aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header"
+                                                         style="text-align: left">
+                                                        <h4 class="model-title" id="myModalLabel"
+                                                            style="display:inline;"
+                                                            th:text="#{view.admin.solution.message}">
+                                                            提示信息</h4>
+                                                        <button type="button" class="close"
+                                                                data-dismiss="modal"
+                                                                aria-hidden="true">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p style="text-align: center"
+                                                           th:text="#{view.admin.solution.delete}">
+                                                            确定删除数据?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button"
+                                                                class="btn btn-default"
+                                                                data-dismiss="modal"
+                                                                th:text="#{view.admin.solution.esc}">
+                                                            取消
+                                                        </button>
+                                                        <button type="button"
+                                                                class="btn btn-primary"
+                                                                name="reconfirm"
+                                                                th:text="#{view.admin.solution.affirm}">
+                                                            确认
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div sd:pagination-summary="">info</div>
+                            </div>
+                            <div class="col-sm-6">
+                                <nav class="pull-right">
+                                    <ul class="pagination" sd:pagination="full">
+                                        <!-- Pagination created by SpringDataDialect, this content is just for mockup -->
+                                        <li class="disabled"><a href="#" aria-label="Previous"><span
+                                                aria-hidden="true">&laquo;</span></a></li>
+                                        <li class="active"><a href="#">1<span class="sr-only">(current)</span></a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script layout:fragment="script">
+    $("button[name='delete']").on("click", function () {
+        var $form = $(this).closest("form");
+        $("#myModal").modal();
+        $("button[name='reconfirm']").on("click", function () {
+            $form.trigger('submit');
+        });
+    });
+</script>
+</body>
+</html>

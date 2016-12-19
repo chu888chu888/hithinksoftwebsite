@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="admin/layouts/main">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title th:text="#{view.main.layouts.main.menu-news}">新闻管理</title>
+    <style type="text/css">
+        #file1{
+            filter:alpha(opacity=0.001);  /* ie 有效*/
+            -moz-opacity:0.00001; /* Firefox  有效*/
+            opacity: 0.00001; /* 通用，其他浏览器  有效*/
+            height: 120px;
+            width: 120px;
+            max-height: 120px;
+            max-width: 120px;
+        }
+        #addpng{
+            filter:alpha(opacity=50);  /* ie 有效*/
+            -moz-opacity:0.5; /* Firefox  有效*/
+            opacity: 0.5; /* 通用，其他浏览器  有效*/
+            border-radius:15px;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="content">
+    <section>
+        <div class="section-header">
+            <ol class="breadcrumb">
+                <li><a th:href="@{/admin/news}" th:text="#{view.main.layouts.main.menu-news}">新闻管理</a></li>
+                <li class="active" th:text="*{id}?#{view.admin.news.header.update}:#{view.admin.news.header.create}">新闻管理</a></li>
+            </ol>
+        </div>
+        <div class="col-md-offset-1 col-md-10">
+            <form class="form form-validate" novalidate="novalidate" th:action="@{/admin/news}" th:method="post"
+                  th:object="${news}" modelAttribute="user">
+                <div class="card">
+                    <div class="card-head style-primary">
+                        <header th:text="*{id}?#{view.admin.news.header.update}:#{view.admin.news.header.create}">新闻操作</header>
+                    </div>
+                    <div class="card-tiles">
+                        <div class="hbox-md col-md-12">
+                            <!-- BEGIN CONTACTS COMMON DETAILS -->
+                            <div class="hbox-column col-md-2 style-default-light">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4 class="opacity-50" th:text="#{view.admin.news.field.title}">标题</h4>
+                                        <dl class="dl-horizontal dl-icon">
+                                            <dd>
+                                                <div class="form-group">
+                                                    <div th:class="${#fields.hasErrors('title')}? has-error">
+                                                        <span class="help-block" style="display: inline"
+                                                              th:if="${#fields.hasErrors('title')}"
+                                                              th:errors="*{title}"></span>
+                                                        <input type="text" class="form-control" th:field="*{title}">
+                                                        <input type="hidden" th:field="*{id}">
+                                                        <span id="createdatinput" th:if="*{createdAt}">
+                                                            <input id="createdAt" type="hidden" th:field="*{createdAt}">
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </dd>
+                                        </dl>
+                                        <!--end .dl-horizontal -->
+                                        <h4 class="opacity-50" th:text="#{view.admin.news.field.thumb}">小图</h4>
+                                        <dl class="dl-horizontal dl-icon">
+                                            <dd style="position: relative;height: 130px">
+                                                <img id="img1" class="img-thumbnail width-3 height-3"
+                                                     th:src="@{http://cdn.hithinksoft.com/home-page/img/blog-thumb-1.jpg}" style="position: absolute;z-index: 1">
+                                                <img id="addpng"class="img-thumbnail width-1 height-1"
+                                                     th:src="@{http://cdn.hithinksoft.com/home-page/img/addpng.png}" style="position: absolute;z-index: 2">
+                                                <a href="#" th:title="#{view.admin.news.thumb.title}"><span id="uploadinput1" style="position: absolute;z-index: 3"><input type="file" id="file1"
+                                                                               name="file"
+                                                                               onchange="uploadimg1()"/></span></a>
+                                                <input type="hidden" id="thumb" name="thumb">
+                                            </dd>
+                                        </dl>
+                                        <!--end .dl-horizontal -->
+                                        <h4 class="opacity-50" th:text="#{view.admin.news.field.popular}">热门</h4>
+                                        <dl class="dl-horizontal dl-icon">
+                                            <dd class="text-center">
+                                                <label class="radio-inline radio-styled">
+                                                    <input type="radio" th:field="*{popular}" value="0"
+                                                           checked><span>否</span>
+                                                </label>
+                                                <label class="radio-inline radio-styled">
+                                                    <input type="radio" th:field="*{popular}" value="1"><span>是</span>
+                                                </label>
+                                            </dd>
+                                        </dl>
+                                        <!--end .dl-horizontal -->
+                                    </div>
+                                    <!--end .col -->
+                                </div>
+                                <!--end .row -->
+                            </div>
+                            <!--end .hbox-column -->
+                            <!-- END CONTACTS COMMON DETAILS -->
+                            <div class="hbox-column col-md-10 ">
+                                <div class="row">
+
+                                    <div class="tab-pane" style="padding-left: 20px;padding-right: 20px;">
+                                        <br/>
+
+                                        <h3 class="opacity-50" th:text="#{view.admin.news.field.digest}">新闻简介</h3>
+
+                                        <div id="newsdigest"></div>
+                                        <br/>
+
+                                        <h3 class="opacity-50" th:text="#{view.admin.news.field.detail}">新闻详情</h3>
+
+                                        <div id="newsdetail"></div>
+                                        <br/>
+                                    </div>
+
+                                </div>
+                                <!--end .row -->
+                            </div>
+                            <!--end .hbox-column -->
+
+                        </div>
+                        <!--end .hbox-md -->
+                    </div>
+                    <!--end .card-tiles -->
+                    <hr/>
+                    <div class="form-group card-actionbar">
+                        <div class="card-actionbar-row">
+                            <button type="submit" class="btn btn-primary ink-reaction" id="create"
+                                    th:text="#{view.joinus.contactus.submit}">提交
+                            </button>
+                        </div>
+                    </div>
+                    <!--end .card-body -->
+                </div>
+                <!--end .card -->
+            </form>
+        </div>
+        <!--end .col -->
+    </section>
+</div>
+<script layout:fragment="script">
+    var digest = UE.getEditor('newsdigest', {
+        toolbars: [
+            ['fullscreen', 'source', '|', 'undo', 'redo', '|', 'bold', 'italic', 'underline', '|', 'justifyleft',
+                'justifycenter', 'justifyright', 'justifyjustify', '|', 'insertorderedlist', 'insertunorderedlist']
+        ],
+        initialFrameWidth: '100%',
+        initialFrameHeight: 200,
+        textarea: "digest"
+    });
+    if ([[${news.digest}]])
+        digest.ready(function () {
+            digest.setContent([[${news.digest}]]);
+        });
+    var detail = UE.getEditor('newsdetail', {
+        toolbars: [
+            ['fullscreen', 'source', '|', 'undo', 'redo', '|', 'bold', 'italic', 'underline', '|', 'justifyleft',
+             'justifycenter', 'justifyright', 'justifyjustify', '|', 'insertorderedlist', 'insertunorderedlist', '|', 'simpleupload','insertframe']
+        ],
+        initialFrameWidth: '100%',
+        initialFrameHeight: 200,
+        textarea: "detail"
+    });
+    if ([[${news.detail}]])
+        detail.ready(function () {
+            detail.setContent([[${news.detail}]]);
+        });
+    if ([[${news.thumb}]]) {
+        $("#thumb").val([[${news.thumb}]]);
+        $("#img1").attr("src", [[${news.thumb}]]);
+    }
+    function uploadimg1() {
+        if ($("#file1").val().length > 0) {
+            ajaxThumbUpload();
+            $("#file1").remove();
+            $("#uploadinput1").append('<input type="file" id="file1" name="file" style="width: 70px" onchange="uploadimg1()"/>');
+        } else {
+            alert("请选择图片");
+        }
+    }
+    function ajaxThumbUpload() {
+        $.ajaxFileUpload({
+            url: '/ueditor/image', //用于文件上传的服务器端请求地址
+            secureuri: false, //一般设置为false
+            fileElementId: 'file1', //文件上传空间的id属性  <input type="file" id="file" name="file" />
+            type: 'post',
+            dataType: 'HTML', //返回值类型 一般设置为json
+            success: function (data, status) //服务器成功响应处理函数
+            {
+                data = data.replace(/[\r\n]/g, "");
+                $("#thumb").val(data);
+                $("#img1").attr("src", data);
+
+                if (typeof (data.error) != 'undefined') {
+                    if (data.error != '') {
+                        alert(data.error);
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            },
+            error: function (data, status, e)//服务器响应失败处理函数
+            {
+                alert(e);
+            }
+        })
+        return false;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main">
+<head>
+    <meta charset="UTF-8">
+    <title>Solution</title>
+    <script src="vendor/jquery/jquery.min.js" th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <style type="text/css">
+        .slucolor{
+            color: black;
+        }
+        .slufont{
+            font-weight: bold;
+        }
+        .sluyi:hover
+        {
+            background-color: #f5f5f5;
+        }
+        @media (min-width: 1200px) {
+            .mobile-client{
+                display: none;
+            }
+        }
+        @media (max-width: 1200px) {
+            .pc-client {
+                display: none;
+            }
+            #solutionBrief img{
+                width: 100%;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<section layout:fragment="content">
+
+    <div class="body pc-client">
+        <div role="main" class="main">
+
+            <section class="page-header page-header-light page-header-more-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1><span th:text="#{view.solution.index.ProductsandSolutions}"></span>
+                                <i class="font-style-normal">Products and
+                                    Solutions</i></h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="container">
+                <div class="col-md-12">
+                    <div class="owl-carousel owl-theme mb-none"
+                         data-plugin-options='{&quot;items&quot;: 1, &quot;animateOut&quot;: &quot;fadeOut&quot;,&quot;autoplay&quot;: true, &quot;autoplayTimeout&quot;: 3000}'>
+                        <div>
+                            <img alt="" class="img-responsive img-rounded"
+                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/ElectronicCommercebanner.jpg}" alt="">
+                        </div>
+                        <div>
+                            <img alt="" class="img-responsive img-rounded"
+                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/cloudbanner.jpg}" alt="">
+                        </div>
+                        <div>
+                            <img alt="" class="img-responsive img-rounded"
+                                 th:src="@{http://cdn.hithinksoft.com/home-page/img/Bigdatabanner.jpg}" alt="">
+                        </div>
+                    </div>
+
+                    <hr id="section">
+                    <div style="padding-top: 40px;"></div>
+                </div>
+            </div>
+            <div class="container" style="padding-top: 20px">
+                <div class="col-md-3">
+                    <div class="toggle toggle-primary" data-plugin-toggle>
+                        <section class="toggle active" th:each="solutionGroup : ${solutionGroups}">
+                            <label th:text="${solutionGroup.name}">模块名</label>
+
+                            <div class="toggle-content">
+                                <ul class="pl-lg li-style"
+                                    th:each="solution : ${solutionGroup.solutions}">
+                                    <li th:if="${solution.id} == ${solutions1.id} " class="sluyi"><a
+                                            style="text-decoration:none;"
+                                            href="#section" onclick="detail(this)"
+                                            th:text="${solution.title}"
+                                            th:value="${solution.detail}" id="slu" class="slufont">标题名</a></li>
+                                    <li th:if="${solution.id} != ${solutions1.id} " class="sluyi"><a
+                                            style="text-decoration:none;"
+                                            href="#section" onclick="detail(this)"
+                                            th:text="${solution.title}"
+                                            th:value="${solution.detail}" id="slu" class="slucolor">标题名</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="col-md-9" name="detailname">
+                    <div th:if="${solutions1}!=null" th:utext="${solutions1.detail}"></div>
+                    <div th:if="${solutions1}==null" th:text="#{view.solution.empty.message}"></div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="body mobile-client">
+        <div class="main" role="main">
+            <section class="page-header page-header-light page-header-more-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1><span>产品及解决方案</span>
+                                <i class="font-style-normal">Products and Solutions</i></h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="container">
+                <div class="col-md-12" th:each="solutionGroup : ${solutionGroups}">
+                    <h4 class="heading-primary" th:text="${solutionGroup.name}">大数据</h4>
+
+                    <div th:each="solution : ${solutionGroup.solutions}">
+                        <a href="" th:href="${#mvc.url('SLC#show').arg(0,solution.id).build()}"
+                           style="text-decoration:none;">
+                            <h3 th:text="${solution.title}">泰康人寿大数据挖掘平台</h3>
+
+                            <div id="solutionBrief">
+                                <p th:utext="${solution.solutionBrief}">
+                                    平台基于hadoop进行保险大数据的采集、处理和挖掘分析，实现保险数据的全链条应用、保险客户的全方位管理、产品生命周期全</p>
+                            </div>
+                        </a>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="http://cdn.hithinksoft.com/home-page/vendor/jquery/jquery.min.js" th:src="@{http://cdn.hithinksoft.com/home-page/vendor/jquery/jquery.min.js}"></script>
+    <script th:inline="javascript">
+        function detail(a) {
+            $("[id=slu]").addClass("slucolor");
+            $("[id=slu]").removeClass("slufont");
+            $(a).removeClass("slucolor")
+            $(a).addClass("slufont")
+            var detailtext = $(a).attr("value");
+            $("[name=detailname]").html(detailtext);
+        }
+    </script>
+</section>
+</body>
+</html>

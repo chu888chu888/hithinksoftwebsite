@@ -1,0 +1,342 @@
+<html class="no-js" lang=""
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <title layout:title-pattern="$DECORATOR_TITLE"
+           th:text="#{view.layouts.main.title}">title</title>
+
+    <!-- Mobile Metas -->
+    <meta name="viewport"
+          content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="keywords"
+          content="苏州,昆山,做软件,app,定制,大数据,解决方案,电商平台,apache hadoop,spark,现场实施,服务商,云计算,阿里云,电子商务,安全信息,管理体系,b2b,b2c,大连华信">
+
+    <!-- Favicon -->
+    <link rel="title-icon" href="http://cdn.hithinksoft.com/home-page/title-icon.ioc"
+          th:href="@{http://cdn.hithinksoft.com/home-page/favicon.ioc}">
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet"
+          href="http://cdn.hithinksoft.com/home-page/vendor/bootstrap/css/bootstrap.min.css"
+          th:href="@{http://cdn.hithinksoft.com/home-page/vendor/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet"
+          href="http://cdn.hithinksoft.com/home-page/vendor/font-awesome/css/font-awesome.min.css"
+          th:href="@{http://cdn.hithinksoft.com/home-page/vendor/font-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet"
+          href="http://cdn.hithinksoft.com/home-page/vendor/simple-line-icons/css/simple-line-icons.min.css"
+          th:href="@{http://cdn.hithinksoft.com/home-page/vendor/simple-line-icons/css/simple-line-icons.min.css}">
+    <link rel="stylesheet"
+          href="http://cdn.hithinksoft.com/home-page/vendor/owl.carousel/assets/owl.carousel.min.css"
+          th:href="@{http://cdn.hithinksoft.com/home-page/vendor/owl.carousel/assets/owl.carousel.min.css}">
+    <link rel="stylesheet"
+          href="http://cdn.hithinksoft.com/home-page/vendor/owl.carousel/assets/owl.theme.default.min.css"
+          th:href="@{http://cdn.hithinksoft.com/home-page/vendor/owl.carousel/assets/owl.theme.default.min.css}">
+    <link rel="stylesheet"
+          href="http://cdn.hithinksoft.com/home-page/vendor/magnific-popup/magnific-popup.min.css"
+          th:href="@{http://cdn.hithinksoft.com/home-page/vendor/magnific-popup/magnific-popup.min.css}">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="http://cdn.hithinksoft.com/home-page/css/theme.css"
+          th:href="@{http://cdn.hithinksoft.com/home-page/css/theme.css}">
+    <link rel="stylesheet" href="http://cdn.hithinksoft.com/home-page/css/theme-elements.css"
+          th:href="@{http://cdn.hithinksoft.com/home-page/css/theme-elements.css}">
+    <link rel="stylesheet" href="http://cdn.hithinksoft.com/home-page/css/theme-blog.css"
+          th:href="@{http://cdn.hithinksoft.com/home-page/css/theme-blog.css}">
+    <link rel="stylesheet" href="http://cdn.hithinksoft.com/home-page/css/theme-shop.css"
+          th:href="@{http://cdn.hithinksoft.com/home-page/css/theme-shop.css}">
+    <link rel="stylesheet" href="http://cdn.hithinksoft.com/home-page/css/theme-animate.css"
+          th:href="@{http://cdn.hithinksoft.com/home-page/css/theme-animate.css}">
+
+    <!-- Current Page CSS -->
+    <link rel="stylesheet"
+          href="http://cdn.hithinksoft.com/home-page/vendor/rs-plugin/css/settings.css"
+          media="screen"
+          th:href="@{http://cdn.hithinksoft.com/home-page/vendor/rs-plugin/css/settings.css}">
+    <link rel="stylesheet"
+          href="http://cdn.hithinksoft.com/home-page/vendor/rs-plugin/css/layers.css" media="screen"
+          th:href="@{http://cdn.hithinksoft.com/home-page/vendor/rs-plugin/css/layers.css}">
+    <link rel="stylesheet"
+          href="http://cdn.hithinksoft.com/home-page/vendor/rs-plugin/css/navigation.css"
+          media="screen"
+          th:href="@{http://cdn.hithinksoft.com/home-page/vendor/rs-plugin/css/navigation.css}">
+    <link rel="stylesheet"
+          href="http://cdn.hithinksoft.com/home-page/vendor/circle-flip-slideshow/css/component.css"
+          media="screen"
+          th:href="@{http://cdn.hithinksoft.com/home-page/vendor/circle-flip-slideshow/css/component.css}">
+
+    <!-- Skin CSS -->
+    <link rel="stylesheet" href="http://cdn.hithinksoft.com/home-page/css/skins/default.css"
+          th:href="@{http://cdn.hithinksoft.com/home-page/css/skins/default.css}">
+
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="http://cdn.hithinksoft.com/home-page/css/custom.css"
+          th:href="@{http://cdn.hithinksoft.com/home-page/css/custom.css}">
+
+    <!-- Head Libs -->
+    <script src="http://cdn.hithinksoft.com/home-page/vendor/modernizr/modernizr.min.js"
+            th:src="@{http://cdn.hithinksoft.com/home-page/vendor/modernizr/modernizr.min.js}"></script>
+    <style type="text/css">
+        .nav-pills > li + li {
+            margin-left: 45px;
+        }
+
+        @media (min-width: 1200px) {
+            #header .header-nav.header-nav-top-line nav > ul > li > a, #header .header-nav.header-nav-top-line nav > ul > li:hover > a {
+                padding: 56px 35px 13px;
+                letter-spacing: 1px;
+            }
+        }
+
+        #header .header-body {
+            min-height: 0px;
+        }
+
+        #header .header-nav-main.header-nav-main-square nav > ul > li > a {
+            border-radius: 5px;
+        }
+
+        .slider {
+            letter-spacing: 1px;
+        }
+
+        @media (min-width: 358px){
+            #header .header-btn-collapse-nav {
+                margin: 45px 0 8px 15px;
+            }
+        }
+
+        @media (max-width: 358px){
+            #header .header-btn-collapse-nav {
+                margin: 0px 0 8px 15px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .container {
+                padding-right: 30px;
+                padding-left: 30px;
+            }
+            footer{
+                padding: 0 !important;
+                border: 0 !important;
+            }
+            footer > .container{
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="body">
+    <header id="header"
+            data-plugin-options='{&quot;stickyEnabled&quot;: true, &quot;stickyEnableOnBoxed&quot;: true, &quot;stickyEnableOnMobile&quot;: true, &quot;stickyStartAt&quot;: 35, &quot;stickySetTop&quot;: &quot;-35px&quot;, &quot;stickyChangeLogo&quot;: true}' style="min-height: 108px;">
+        <div class="header-body">
+            <div class="header-container container">
+                <div class="header-row">
+                    <div class="header-column">
+                        <div class="header-logo">
+                            <a href="#" th:href="@{/}">
+                                <img alt="Porto" width="231" height="60" data-sticky-width="184"
+                                     data-sticky-height="48"
+                                     data-sticky-top="16" src="http://cdn.hithinksoft.com/home-page/img/logo.png"
+                                     th:src="@{http://cdn.hithinksoft.com/home-page/img/logo.png}">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="header-column">
+                        <div class="header-row">
+                            <div class="header-nav">
+                                <button class="btn header-btn-collapse-nav" data-toggle="collapse"
+                                        data-target=".header-nav-main">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                                <div id="main_menu" class="header-nav-main header-nav-main-square header-nav-main-effect-3 header-nav-main-sub-effect-1 collapse">
+                                    <nav>
+                                        <ul class="nav nav-pills slider" id="mainNav" style="margin-top: 10px;">
+                                            <li class="active"
+                                                th:attr="class=${#urlHelper.isCurrentPathMatchRegex('/?')?'active':''}">
+                                                <a href="#" th:href="@{/}"
+                                                   th:text="#{view.layouts.main.home}"
+                                                   style="font-size:16px;font-weight:600;">
+                                                    Home
+                                                </a>
+                                            </li>
+                                            <li class=""
+                                                th:attr="class=${#urlHelper.isCurrentPathMatchAnt('/hithinksoft/**')?'active':''}">
+                                                <a href="#"
+                                                   th:href="${#mvc.url('AHC#hithinksoft').build()}"
+                                                   th:text="#{view.layouts.main.abouthuaxin}"
+                                                   style="font-size:16px;font-weight:600;">
+                                                    Abouthuaxin
+                                                </a>
+                                            </li>
+                                            <li class=""
+                                                th:attr="class=${#urlHelper.isCurrentPathMatchAnt('/news/**')?'active':''}">
+                                                <a href="#"
+                                                   th:href="${#mvc.url('NLC#page').build()}"
+                                                   th:text="#{view.layouts.main.newsfocus}"
+                                                   style="font-size:16px;font-weight:600;">
+                                                    Newsfocus
+                                                </a>
+
+                                            </li>
+                                            <li class=""
+                                                th:attr="class=${#urlHelper.isCurrentPathMatchAnt('/solution/**')?'active':''}">
+                                                <a href="javascript:{}" onclick="document.forms['solution'].submit()"
+                                                   th:text="#{view.layouts.main.solution}"
+                                                   style="font-size:16px;font-weight:600;">
+                                                    Solution
+                                                </a>
+                                            </li>
+                                            <li class=""
+                                                th:attr="class=${#urlHelper.isCurrentPathMatchAnt('/job/**')?'active ':''}">
+                                                <a href="#"
+                                                   th:href="${#mvc.url('JLC#index').build()}"
+                                                   th:text="#{view.layouts.main.job}"
+                                                   style="font-size:16px;font-weight:600;">
+                                                    Job
+                                                </a>
+                                            </li>
+                                            <li class=""
+                                                th:attr="class=${#urlHelper.isCurrentPathMatchAnt('/contacts/**')?'active':''}">
+                                                <a href="#"
+                                                   th:href="${#mvc.url('CIC#index').build()}"
+                                                   th:text="#{view.layouts.main.contactus}"
+                                                   style="font-size:16px;font-weight:600;">Contactus</a>
+                                            </li>
+                                            <!--<li class="">-->
+                                            <!--<a href="#" th:text="#{view.layouts.main.internalsystem}">-->
+                                            <!--Internalsystem-->
+                                            <!--</a>-->
+                                            <!--</li>-->
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section layout:fragment="content">
+    </section>
+    <footer id="footer" class="light narrow" style="padding-top: 25px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <ul class="nav nav-pills">
+                        <li style="margin-left: 20px;"><a href="#" th:href="@{/}" th:text="#{view.layouts.main.home}">Home</a>
+                        </li>
+                        <li style="margin-left: 20px;"><a href="#" th:href="${#mvc.url('AHC#hithinksoft').build()}"
+                               th:text="#{view.layouts.main.abouthuaxin}">Abouthuaxin</a></li>
+                        <li style="margin-left: 20px;"><a href="#" th:href="${#mvc.url('NLC#page').build()}"
+                               th:text="#{view.layouts.main.newsfocus}">Newsfocus</a></li>
+                        <form id="solution" th:action="${#mvc.url('SLC#index').build()}" method="post"><input type="hidden" id="id" name="id" value="1"></form>
+                        <li style="margin-left: 20px;"><a href="javascript:{}" onclick="document.forms['solution'].submit()"
+                               th:text="#{view.layouts.main.solution}">Solution</a></li>
+                        <li style="margin-left: 20px;"><a href="#" th:href="${#mvc.url('JLC#index').build()}"
+                               th:text="#{view.layouts.main.job}">job</a></li>
+                        <li style="margin-left: 20px;"><a href="#" th:href="${#mvc.url('CIC#index').build()}"
+                               th:text="#{view.layouts.main.contactus}">contactus</a></li>
+                        <!--<li><a href="#" th:text="#{view.layouts.main.internalsystem}">Internalsystem</a></li>-->
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <div class="narrow-phone">
+                        <h5 class="mb-sm" th:text="#{view.layouts.main.contactus}">Contact Us</h5>
+                        <span class="phone" th:text="#{view.layouts.main.contactphone}">(800) 123-4567</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-7">
+                        <p th:text="#{view.layouts.main.copyright}">© Copyright 2016. All Rights
+                            Reserved.</p>
+                    </div>
+                    <div class="col-md-1">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+<!-- Vendor -->
+<script src="http://cdn.hithinksoft.com/home-page/vendor/jquery/jquery.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/vendor/jquery/jquery.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/vendor/jquery.appear/jquery.appear.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/vendor/jquery.appear/jquery.appear.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/vendor/jquery.easing/jquery.easing.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/vendor/jquery.easing/jquery.easing.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/vendor/jquery-cookie/jquery-cookie.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/vendor/jquery-cookie/jquery-cookie.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/vendor/bootstrap/js/bootstrap.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/vendor/bootstrap/js/bootstrap.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/vendor/common/common.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/vendor/common/common.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/vendor/jquery.validation/jquery.validation.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/vendor/jquery.validation/jquery.validation.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/vendor/jquery.stellar/jquery.stellar.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/vendor/jquery.stellar/jquery.stellar.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/vendor/jquery.gmap/jquery.gmap.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/vendor/jquery.gmap/jquery.gmap.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/vendor/jquery.lazyload/jquery.lazyload.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/vendor/jquery.lazyload/jquery.lazyload.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/vendor/isotope/jquery.isotope.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/vendor/isotope/jquery.isotope.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/vendor/owl.carousel/owl.carousel.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/vendor/owl.carousel/owl.carousel.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/vendor/magnific-popup/jquery.magnific-popup.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/vendor/magnific-popup/jquery.magnific-popup.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/vendor/vide/vide.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/vendor/vide/vide.min.js}"></script>
+
+<!-- Theme Base, Components and Settings -->
+<script src="http://cdn.hithinksoft.com/home-page/js/theme.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/theme.js}"></script>
+
+<!-- Current Page Vendor and Views -->
+<script src="http://cdn.hithinksoft.com/home-page/vendor/rs-plugin/js/jquery.themepunch.tools.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/vendor/rs-plugin/js/jquery.themepunch.tools.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/vendor/circle-flip-slideshow/js/jquery.flipshow.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/vendor/circle-flip-slideshow/js/jquery.flipshow.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/views/view.home.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/views/view.home.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/views/view.contact.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/views/view.contact.js}"></script>
+
+<!-- Theme Custom -->
+<script src="http://cdn.hithinksoft.com/home-page/js/custom.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/custom.js}"></script>
+
+<!-- Theme Initialization Files -->
+<script src="http://cdn.hithinksoft.com/home-page/js/theme.init.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/theme.init.js}"></script>
+
+<!-- Demo -->
+<script src="http://cdn.hithinksoft.com/home-page/js/demos/demo-corporate-hosting.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/demos/demo-corporate-hosting.js}"></script>
+<script th:inline="javascript">
+    $(document).ready(function () {
+        $("[class=main]").click(function(){
+            $("[id=main_menu]").removeClass("in");
+        })
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="admin/layouts/main">
+<head>
+    <title th:text="#{view.main.layouts.main.menu-admin-permission}">权限管理</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <section>
+        <div class="section-header">
+            <ol class="breadcrumb">
+                <li><a href="/authorities" th:href="@{/admin/authorities}"
+                       th:text="#{view.main.layouts.main.menu-admin-permission}">权限管理</a></li>
+                <li class="active" th:text="#{view.admin.authorities.button.create}">添加新权限</li>
+            </ol>
+        </div>
+        <div class="section-body">
+            <div class="col-lg-6 col-lg-offset-3">
+                <form class="form form-validate floating-label" novalidate="novalidate" th:method="post"
+                      th:action="@{/admin/authorities}" th:object="${permission}" modelAttribute="permission">
+                    <div class="card">
+                        <div class="card-head card-head-sm style-primary">
+                            <header th:text="#{view.admin.authorities.button.create}">添加新权限</header>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group"
+                                 th:attrappend="class=${#fields.hasErrors('authority')?' has-error':''}">
+                                <input type="text" class="form-control" th:field="*{authority}">
+                                <span th:if="${#fields.hasErrors('authority')}" th:errors="*{authority}"
+                                      class="help-block"></span>
+                                <label th:for="*{authority}"
+                                       th:text="#{view.admin.authorities.field.authority}">权限标识</label>
+
+                                <p class="help-block">如：AUTH_AUTHORITY_MGNT</p>
+                            </div>
+                            <div class="form-group" th:attrappend="class=${#fields.hasErrors('name')?' has-error':''}">
+                                <input type="text" class="form-control" th:field="*{name}">
+                                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                                      class="help-block"></span>
+                                <label th:for="*{name}" th:text="#{view.admin.authorities.field.name}">权限名称</label>
+
+                                <p class="help-block">如：权限管理</p>
+                            </div>
+                            <div class="form-group" th:attrappend="class=${#fields.hasErrors('path')?' has-error':''}">
+                                <input type="text" class="form-control" id="path" name="path">
+                                <label for="path" th:text="#{view.admin.authorities.field.path}">权限路径</label>
+
+                                <p class="help-block">如：/authorities</p>
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    <label class="radio-inline radio-styled radio-info">
+                                        <input name="enabled" type="radio" value="0">
+                                        <span th:text="#{view.admin.authorities.field.enabled.false}">禁用</span>
+                                    </label>
+                                    <label class="radio-inline radio-styled radio-info">
+                                        <input name="enabled" type="radio" value="1" checked="">
+                                        <span th:text="#{view.admin.authorities.field.enabled.true}">启用</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end .card-body -->
+                        <div class="card-actionbar">
+                            <div class="card-actionbar-row">
+                                <button type="submit" class="btn btn-primary ink-reaction"
+                                        th:text="#{view.admin.users.field.add}">添加
+                                </button>
+                            </div>
+                        </div>
+                        <!--end .card-actionbar -->
+                    </div>
+                    <!--end .card -->
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

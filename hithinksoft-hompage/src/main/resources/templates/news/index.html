@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main">
+<head>
+    <title>newsfocus</title>
+    <style type="text/css">
+        p {
+            margin: 0;
+        }
+        @media (max-width: 1200px) {
+            .pagination-lg > li > a,
+            .pagination-lg > li > span{
+                padding: 6px 12px;
+                font-size: 16px;
+            }
+            .sidebar{
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="body">
+        <div role="main" class="main">
+            <section class="page-header page-header-light page-header-more-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1><span th:text="#{view.layouts.main.newsfocus}"></span> <i style="font-style: normal">News
+                                Focus</i></h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div th:if="${news.getTotalPages()}!=0">
+                            <div class="blog-posts">
+                                <article class="post post-large" th:each="news,iterStat:${news}">
+                                    <div class="post-date">
+                                        <span class="day" th:text="${dates.day(news.createdAt)}">10</span>
+                                        <span class="month" th:text="${dates.monthNameShort(news.createdAt)}">Jan</span>
+                                    </div>
+
+                                    <div class="post-content">
+
+                                        <a href="#" th:href="${#mvc.url('NSC#show').arg(0,news.id).build()}" style="text-decoration:none;">
+                                            <h2 style="font-size: 26px;"
+                                                th:text="${news.title}"></h2>
+
+                                            <div class="newspart" th:utext="${news.digest}"
+                                                 style="overflow: hidden;max-height:236px;"
+                                                 style="margin-bottom: 20px;">
+                                            </div>
+                                        </a>
+
+                                        <div class="post-meta">
+                                            <span></span>
+                                            <a href="#" th:href="${#mvc.url('NSC#show').arg(0,news.id).build()}"
+                                               class="btn btn-xs btn-primary pull-right"
+                                               th:text="#{view.newsfocus.index.readmore}">Read more...</a>
+                                        </div>
+
+                                    </div>
+                                </article>
+                                <ul class="pagination pagination-lg pull-right" sd:pagination="full">
+                                    <!-- Pagination created by SpringDataDialect, this content is just for mockup -->
+                                    <li class="disabled"><a href="#" aria-label="Previous"><span
+                                            aria-hidden="true">&laquo;</span></a></li>
+                                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div th:if="${news.getTotalPages()}==0">
+                            <p style="text-align: center;padding-top: 20%" th:text="#{view.news.empty.message}"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <aside class="sidebar">
+
+                            <form action="/news/query" th:action="${#mvc.url('NLC#query').build()}">
+                                <div class="input-group input-group-lg">
+                                    <input class="form-control" placeholder="Search..." name="search" id="search"
+                                           type="text" th:value="${search}">
+										<span class="input-group-btn">
+											<button type="submit" class="btn btn-primary btn-lg"><i
+                                                    class="fa fa-search"></i></button>
+										</span>
+                                </div>
+                            </form>
+
+                            <hr>
+
+                            <div class="tabs mb-xlg">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#popularPosts" data-toggle="tab"><span
+                                            th:text="#{view.newsfocus.index.popular}">Popular</span></a></li>
+                                    <li><a href="#recentPosts" data-toggle="tab"><span
+                                            th:text="#{view.newsfocus.index.recent}">Recent</span></a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="popularPosts">
+                                        <ul class="simple-post-list">
+                                            <li th:each="popular,iterStat:${popular}">
+                                                <div class="post-image">
+                                                    <div class="img-thumbnail">
+                                                        <a href="show.html"
+                                                           th:href="${#mvc.url('NSC#show').arg(0,popular.id).build()}">
+                                                            <img src="img/blog-thumb-1.jpg"
+                                                                 th:src="@{${popular.thumb}}" alt="" width="50px" height="50px">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-info">
+                                                    <a href="show.html"
+                                                       th:href="${#mvc.url('NSC#show').arg(0,popular.id).build()}"><span
+                                                            th:text="${popular.title}">Nullam Vitae Nibh Un Odiosters</span></a>
+
+                                                    <div class="post-meta">
+                                                        <span th:text="${#dates.format(popular.createdAt,'yyyy-MM-dd')}"> Jan 10, 2016</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-pane" id="recentPosts">
+                                        <ul class="simple-post-list">
+                                            <li th:each="recent,iterStat:${recent}">
+                                                <div class="post-image">
+                                                    <div class="img-thumbnail">
+                                                        <a href="show.html"
+                                                           th:href="${#mvc.url('NSC#show').arg(0,recent.id).build()}">
+                                                            <img src="img/blog-thumb-1.jpg"
+                                                                 th:src="@{${recent.thumb}}" alt=""  width="50px" height="50px">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-info">
+                                                    <a href="show.html"
+                                                       th:href="${#mvc.url('NSC#show').arg(0,recent.id).build()}"><span
+                                                            th:text="${recent.title}">Nullam Vitae Nibh Un Odiosters</span></a>
+
+                                                    <div class="post-meta">
+                                                        <span th:text="${#calendars.format(recent.createdAt,'yyyy-MM-dd')}"> Jan 10, 2016</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+</body>
+</html>

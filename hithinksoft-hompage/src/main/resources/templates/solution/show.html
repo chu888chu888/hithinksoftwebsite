@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main">
+<head>
+    <meta charset="UTF-8">
+    <title>Solution</title>
+    <style type="text/css">
+        @media (max-width: 1200px) {
+            #detail img{
+                width: 100%;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="body">
+        <div class="main" role="main">
+            <div class="container" id="detail">
+                <div th:if="${solution}!=null" th:utext="${solution.detail}"></div>
+                <div th:if="${solution}==null" th:text="#{view.solution.empty.message}"></div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

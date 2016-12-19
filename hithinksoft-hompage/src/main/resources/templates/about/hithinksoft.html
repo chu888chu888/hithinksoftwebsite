@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main">
+<head>
+    <meta charset="UTF-8">
+    <title>abouthuaxin</title>
+    <style type="text/css">
+        .thumb-info .thumb-info-inner,
+        .thumb-info .thumb-info-type {
+            letter-spacing: 2px;
+        }
+        .slider{
+            letter-spacing: 1px;
+        }
+        .tp-bannertimer{
+            height: 0;
+        }
+        .slider-container {
+            background-color: #EAEAEA;!important;
+        }
+        @media (max-width: 1200px) {
+            .pin-wrapper{
+                display: none;
+            }
+            #navSecondary{
+                display: none;
+            }
+            .values{
+                margin: 0 !important;
+            }
+        }
+    </style>
+</head>
+<body data-spy="scroll" data-target="#navSecondary" data-offset="170">
+<section layout:fragment="content">
+    <div role="main" class="main">
+        <div class="slider-container rev_slider_wrapper" style="height: 437px;">
+            <div id="revolutionSlider" class="slider rev_slider" data-plugin-revolution-slider data-plugin-options='{&quot;delay&quot;: 3000, &quot;gridwidth&quot;: 1200, &quot;gridheight&quot;: 437}'>
+                <ul>
+                    <li data-transition="fade">
+                        <img src="http://cdn.hithinksoft.com/home-page/img/slides/slide-bg-3.jpg"
+                             th:src="@{http://cdn.hithinksoft.com/home-page/img/index/banner.jpg}"
+                             alt=""
+                             data-bgposition="center center"
+                             data-bgfit="cover"
+                             data-bgrepeat="no-repeat"
+                             class="rev-slidebg">
+                    </li>
+                    <li data-transition="fade">
+                        <img src="http://cdn.hithinksoft.com/home-page/img/slides/slide-bg-3.jpg"
+                             th:src="@{http://cdn.hithinksoft.com/home-page/img/index/databanner.jpg}"
+                             alt=""
+                             data-bgposition="center center"
+                             data-bgfit="cover"
+                             data-bgrepeat="no-repeat"
+                             class="rev-slidebg">
+                    </li>
+                    <li data-transition="fade">
+                        <img src="http://cdn.hithinksoft.com/home-page/img/slides/slide-bg-3.jpg"
+                             th:src="@{http://cdn.hithinksoft.com/home-page/img/index/cloudbanner.jpg}"
+                             alt=""
+                             data-bgposition="center center"
+                             data-bgfit="cover"
+                             data-bgrepeat="no-repeat"
+                             class="rev-slidebg">
+                    </li>
+                    <li data-transition="fade">
+                        <img src="http://cdn.hithinksoft.com/home-page/img/slides/slide-bg-3.jpg"
+                             th:src="@{http://cdn.hithinksoft.com/home-page/img/index/Commercebanner.jpg}"
+                             alt=""
+                             data-bgposition="center center"
+                             data-bgfit="cover"
+                             data-bgrepeat="no-repeat"
+                             class="rev-slidebg">
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <aside class="nav-secondary" id="navSecondary" data-plugin-sticky
+               data-plugin-options='{&quot;minWidth&quot;: 991, &quot;padding&quot;: {&quot;top&quot;: 70}}'>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="nav nav-pills nav-pills-tertiary slider">
+                            <li style="width: 10%;"><a data-hash data-hash-offset="165" href="#CompanyProfile"
+                                                      th:text="#{view.abouthuaxin.abouthuaxin.companyprofile}" style="font-size: 14px;">公司简介</a>
+                            </li>
+                            <li style="width: 10%"><a data-hash data-hash-offset="165" href="#culture"
+                                                      th:text="#{view.abouthuaxin.abouthuaxin.culture}" style="font-size: 14px;">企业文化</a>
+                            </li>
+                            <li style="width: 10%"><a data-hash data-hash-offset="165" href="#development"
+                                                      th:text="#{view.abouthuaxin.abouthuaxin.development}" style="font-size: 14px;">发展历程</a>
+                            </li>
+                            <li style="width: 10%"><a data-hash data-hash-offset="165" href="#showhonor"
+                                                      th:text="#{view.abouthuaxin.abouthuaxin.showhonor}" style="font-size: 14px;">荣誉展示</a>
+                            </li>
+                            <li style="width: 10%"><a data-hash data-hash-offset="165" href="#Qualification"
+                                                      th:text="#{view.abouthuaxin.abouthuaxin.Qualification}" style="font-size: 14px;">资质认证</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+
+        <section id=CompanyProfile">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-responsive mt-xl appear-animation" src="http://cdn.hithinksoft.com/home-page/img/img1.png"
+                             th:src="@{http://cdn.hithinksoft.com/home-page/img/kunshanhuaxinimg.jpg}" alt="layout styles" data-appear-animation="fadeInLeft" style="padding-top: 40px">
+                    </div>
+                    <div class="col-md-7 col-md-offset-1">
+                        <h2 class="mt-xl" th:text="#{view.abouthuaxin.abouthuaxin.introduction1}">
+                            “以人为本，值得信赖”</h2>
+
+                        <p class="lead" style="font-size: 16px;line-height: 2;" th:utext="#{view.abouthuaxin.abouthuaxin.introduction1value}">
+                            昆山华信软件技术有限公司成立于2013年，作为大连华信立足长三角地区、辐射中三角的核心运营中心，以“成为国内有特色的一流IT技术服务提供商”为发展愿景，具备软件开发、行业解决方案、软件测试与维护、本地化与全球化等全面的IT专业服务能力。公司注册资金2000万元，办公场所占地4000平，现有员工700人。</p>
+                    </div>
+                </div>
+
+                <hr class="tall">
+
+                <div class="row">
+                    <div class="col-md-7">
+                        <h2 class="mt-xl" th:text="#{view.abouthuaxin.abouthuaxin.introduction2}">
+                            “求实开拓，持续发展”</h2>
+
+                        <p class="lead" style="font-size: 16px;line-height: 2;" th:text="#{view.abouthuaxin.abouthuaxin.introduction2value}">
+                            自2002至今，华信的软件出口额一直位居国内前三名，强大的技术实力和科学的管理机制是华信的主要竞争优势。华信先后获得“最具竞争力的中国软件企业”、“杰出IT外包服务贡献奖”、“促进国际IT与软件服务外包发展最佳商业实践奖”、“中国服务外包领军企业”、“中国自主品牌软件产品前十家企业”等荣誉。作为世界经济论坛的“全球成长型企业”会员，华信坚持走持续创新路线，于2010年被认定为“国家火炬计划重点高新技术企业”，是国内最早通过CMMI5级评估的软件企业之一。我们真诚欢迎有志之士加盟华信，一起携手未来！</p>
+                    </div>
+                    <div class="col-md-4 col-md-offset-1 mt-xl">
+                        <img class="img-responsive appear-animation" src="http://cdn.hithinksoft.com/home-page/img/img2.png" th:src="@{http://cdn.hithinksoft.com/home-page/img/img2.png}"
+                             alt="style switcher" data-appear-animation="fadeInRight">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="section section-default" id="culture">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="owl-carousel owl-theme nav-bottom rounded-nav mb-none"
+                             data-plugin-options='{&quot;items&quot;: 1, &quot;autoHeight&quot;: true, &quot;loop&quot;: false, &quot;nav&quot;: true, &quot;dots&quot;:false }'>
+                            <div>
+                                <div class="col-md-12">
+                                    <div class="testimonial testimonial-style-5 testimonial-with-quotes mb-none">
+                                        <blockquote>
+                                            <p class="values" style="text-align: left;line-height: 2;margin-left: 10%;font-family: Microsoft YaHei;font-size: 16px;">
+                                                <span th:text="#{view.abouthuaxin.abouthuaxin.huaxinvalues1}">活力——用活力和激情应对挑战，以勤奋和努力推动公司发展</span><br/>
+                                                <span th:text="#{view.abouthuaxin.abouthuaxin.huaxinvalues2}">诚信——对社会诚信、对客户诚信、对公司诚信、对同事诚信，注重每一份承诺和责任</span><br/>
+                                                <span th:text="#{view.abouthuaxin.abouthuaxin.huaxinvalues3}">能力——以能力赢得信赖，不断提升和超越最大实现</span><br/>
+                                                <span th:text="#{view.abouthuaxin.abouthuaxin.huaxinvalues4}">团队——同心同德、群策群力、团结协作</span>
+                                            </p>
+                                        </blockquote>
+                                        <div class="testimonial-arrow-down"></div>
+                                        <div class="testimonial-author">
+                                            <p><strong style="font-size: larger"
+                                                       th:text="#{view.abouthuaxin.abouthuaxin.huaxinvalues}">华信价值观</strong><span>&nbsp;</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-md-12">
+                                    <div class="testimonial testimonial-style-5 testimonial-with-quotes mb-none">
+                                        <blockquote>
+                                            <p class="center" style="line-height: 2;font-family: Microsoft YaHei;font-size: 16px;">
+                                                <span th:text="#{view.abouthuaxin.abouthuaxin.huaxinmission1}">成为最优秀的应用软件开发及服务提供商</span><br/>
+                                                <span th:text="#{view.abouthuaxin.abouthuaxin.huaxinmission2}">稳健经营、开拓创新、贡献社会，成为备受尊重的企业</span><br/>
+                                                <span th:text="#{view.abouthuaxin.abouthuaxin.huaxinmission3}">真诚服务、提升客户价值，实现共赢</span><br/>
+                                                <span th:text="#{view.abouthuaxin.abouthuaxin.huaxinmission4}">尊重员工、爱护员工、成就员工，追求企业和员工价值的最大实现</span>
+                                            </p>
+                                        </blockquote>
+                                        <div class="testimonial-arrow-down"></div>
+                                        <div class="testimonial-author">
+                                            <p><strong style="font-size: larger"
+                                                       th:text="#{view.abouthuaxin.abouthuaxin.huaxinmission}">华信愿景与使命</strong><span>&nbsp;</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="development">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="heading-primary" th:text="#{view.abouthuaxin.abouthuaxin.development}">发展历程</h3>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <ul class="history">
+
+                            <li class="appear-animation" data-appear-animation="fadeInUp">
+                                <div class="thumb">
+                                    <img src="http://cdn.hithinksoft.com/home-page/img/IAOP.jpg" th:src="@{http://cdn.hithinksoft.com/home-page/img/IAOP.jpg}" alt=""/>
+                                </div>
+                                <div class="featured-box">
+                                    <div class="box-content">
+                                        <h4 class="heading-primary"
+                                            th:text="#{view.abouthuaxin.abouthuaxin.year2016}"><strong>2016</strong>
+                                        </h4>
+
+                                        <p th:text="#{view.abouthuaxin.abouthuaxin.year2016text1}">
+                                            2016年4月华信投资控股讯和创新有限公司</p>
+
+                                        <p th:text="#{view.abouthuaxin.abouthuaxin.year2016text2}">
+                                            2016年3月华信入围2016年IAOP全球外包企业100强</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="appear-animation" data-appear-animation="fadeInUp">
+                                <div class="thumb">
+                                    <img src="http://cdn.hithinksoft.com/home-page/img/Okinawa.jpg" th:src="@{http://cdn.hithinksoft.com/home-page/img/Okinawa.jpg}" alt=""/>
+                                </div>
+                                <div class="featured-box">
+                                    <div class="box-content">
+                                        <h4 class="heading-primary"
+                                            th:text="#{view.abouthuaxin.abouthuaxin.year2015}"><strong>2015</strong>
+                                        </h4>
+
+                                        <p th:text="#{view.abouthuaxin.abouthuaxin.year2015text1}">
+                                            2015年12月华信获得软件安全开发服务一级资质</p>
+
+                                        <p th:text="#{view.abouthuaxin.abouthuaxin.year2015text2}">
+                                            2015年12月云计算公共服务平台挂牌</p>
+
+                                        <p th:text="#{view.abouthuaxin.abouthuaxin.year2015text3}">
+                                            2015年9月万千物联科技有限公司成立</p>
+
+                                        <p th:text="#{view.abouthuaxin.abouthuaxin.year2015text4}">
+                                            2015年8月冲绳华信株式会社成立</p>
+
+                                        <p th:text="#{view.abouthuaxin.abouthuaxin.year2015text5}">
+                                            2015年7月华信在“新三板”挂牌，证券代码为832715</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="appear-animation" data-appear-animation="fadeInUp">
+                                <div class="thumb">
+                                    <img src="http://cdn.hithinksoft.com/home-page/img/InternationalSoftwarePark.jpg" th:src="@{http://cdn.hithinksoft.com/home-page/img/InternationalSoftwarePark.jpg}" alt=""/>
+                                </div>
+                                <div class="featured-box">
+                                    <div class="box-content">
+                                        <h4 class="heading-primary"
+                                            th:text="#{view.abouthuaxin.abouthuaxin.year2014}"><strong>2014</strong>
+                                        </h4>
+
+                                        <p th:text="#{view.abouthuaxin.abouthuaxin.year2014text1}">
+                                            2014年12月华信控股大连华铁海兴科技有限公司</p>
+
+                                        <p th:text="#{view.abouthuaxin.abouthuaxin.year2014text2}">
+                                            2014年12月泰州中国医药城华药电子商务股份有限公司成立</p>
+
+                                        <p th:text="#{view.abouthuaxin.abouthuaxin.year2014text3}">
+                                            2014年12月华信获得信息系统安全集成服务一级资质</p>
+
+                                        <p th:text="#{view.abouthuaxin.abouthuaxin.year2014text4}">
+                                            2014年6月华信富融(苏州工业园区)软件技术有限公司成立</p>
+
+                                        <p th:text="#{view.abouthuaxin.abouthuaxin.year2014text5}">
+                                            2014年3月华信国际软件园实现全面入驻</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="appear-animation" data-appear-animation="fadeInUp">
+                                <div class="thumb">
+                                    <img src="http://cdn.hithinksoft.com/home-page/img/KunshanHuaxinestablished.jpg" th:src="@{http://cdn.hithinksoft.com/home-page/img/KunshanHuaxinestablished.jpg}" alt=""/>
+                                </div>
+                                <div class="featured-box">
+                                    <div class="box-content">
+                                        <h4 class="heading-primary"
+                                            th:text="#{view.abouthuaxin.abouthuaxin.year2013}"><strong>2013</strong>
+                                        </h4>
+
+                                        <p th:text="#{view.abouthuaxin.abouthuaxin.year2013text1}">
+                                            2013年12月华信通过ISO20000：2011IT服务管理体系认证</p>
+
+                                        <p th:text="#{view.abouthuaxin.abouthuaxin.year2013text2}">
+                                            2013年7月昆山华信软件技术有限公司成立</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="appear-animation" data-appear-animation="fadeInUp">
+                                <div class="thumb">
+                                    <img src="http://cdn.hithinksoft.com/home-page/img/HeGuoqianginspection.jpg" th:src="@{http://cdn.hithinksoft.com/home-page/img/HeGuoqianginspection.jpg}" alt=""/>
+                                </div>
+                                <div class="featured-box">
+                                    <div class="box-content">
+                                        <h4 class="heading-primary"
+                                            th:text="#{view.abouthuaxin.abouthuaxin.year2011}"><strong>2011</strong>
+                                        </h4>
+
+                                        <p th:text="#{view.abouthuaxin.abouthuaxin.year2011text1}">
+                                            2011年4月中共中央政治局常委、中央纪委书记贺国强视察华信</p>
+
+                                        <p th:text="#{view.abouthuaxin.abouthuaxin.year2011text2}">
+                                            2011年2月华信控股中信网络科技股份有限公司</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <hr class="tall">
+        <section id="showhonor">
+            <div class="container">
+                <div class="col-md-12">
+                    <h3 class="heading-primary" th:text="#{view.abouthuaxin.abouthuaxin.showhonor}">荣誉展示</h3>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2014}">2014年</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2014honor1}">2014年10月大连华信荣获2013年中国软件出口和服务外包排行榜双亚军</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2014honor2}">2014年10月大连华信荣获2013年度软件外包十大龙头企业奖</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2014honor3}">2014年6月大连华信荣获中国软件和信息服务业突出贡献奖</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2014honor4}">2014年6月大连华信荣获中国软件业务收入百强</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2014honor5}">2014年3月大连华信入围2013年中国服务外包企业五十强</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2013}">2013年</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2013honor1}">2013年12月华信入围2013年中国软件和信息技术服务业最有价值品牌榜</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2013honor2}">2013年9月华信荣获2013年中国服务外包产业最佳创新实践奖</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2013honor3}">2013年6月华信入围中国服务外包十大领军企业</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2013honor4}">2013年6月华信荣获最佳技术商业（服务外包）国际化创新奖</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2013honor5}">2013年6月华信荣获2012-2013中国软件和信息服务业突出贡献企业</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2013honor6}">2013年5月华信荣获2012年中国服务外包企业第4名</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2013honor7}">2013年5月华信荣获2012年中国软件出口企业第2名</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2013honor8}">2013年3月华信入围2012年度中国服务外包企业五十强</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2013honor9}">2013年3月华信荣获2012年度中国服务外包产业最佳创新实践奖</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2013honor10}">2013年2月华信被评为中国年度最佳雇主(2012)大连年度最佳雇主</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2013honor11}">
+                        2013年2月华信入围2012年度中国商务竞争新优势最具活力服务贸易企业50强</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2012}">2012年</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2012honor1}">2012年12月华信商标被评为中国驰名商标</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2012honor2}">2012年11月华信被评为2012年商务部重点联系服务外包企业</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2012honor3}">2012年10月华信荣获2012中国服务外包产业最佳创新实践奖</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2012honor4}">2012年7月华信入围2012（第十一届）中国软件业务收入前百家企业</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2012honor5}">2012年7月华信入围2012（第十一届）中国自主品牌软件产品前十家企业</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2012honor6}">
+                        2012年6月华信荣获2011-2012中国软件和信息服务业突出贡献企业奖</p>
+
+                    <p th:text="#{view.abouthuaxin.abouthuaxin.2012honor7}">
+                        2012年6月华信荣获2011-2012中国软件和信息服务业十年领军企业奖</p>
+                    <hr>
+                </div>
+            </div>
+        </section>
+
+        <section class="col-md-12" id="Qualification">
+            <div class="container">
+                <h3 class="heading-primary">资质认证</h3>
+
+                <ul class="list list-icons list-primary">
+                    <li class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="0"><i
+                            class="fa fa-check"></i><span th:text="#{view.abouthuaxin.abouthuaxin.Qualification1}">2001年完成了ISO9001：2000转版认证</span>
+                    </li>
+                    <li class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="100">
+                        <i class="fa fa-check"></i><span th:text="#{view.abouthuaxin.abouthuaxin.Qualification2}">2004年公司通过CMM5级评估，为国内第五家通过该级别评估的软件企业</span>
+                    </li>
+                    <li class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="200">
+                        <i class="fa fa-check"></i><span th:text="#{view.abouthuaxin.abouthuaxin.Qualification3}">2005年公司取得由信息产业部颁发的计算机信息系统集成一级资质证书</span>
+                    </li>
+                    <li class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="300">
+                        <i class="fa fa-check"></i><span th:text="#{view.abouthuaxin.abouthuaxin.Qualification4}">2005年通过了英国标准协会的BS7799-2:2002信息安全管理体系认证</span>
+                    </li>
+                    <li class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="400">
+                        <i class="fa fa-check"></i><span th:text="#{view.abouthuaxin.abouthuaxin.Qualification5}">2006年9月完成了向ISO27001:2005的转换</span>
+                    </li>
+                    <li class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="500">
+                        <i class="fa fa-check"></i><span th:text="#{view.abouthuaxin.abouthuaxin.Qualification6}">2006年公司通过ISO14001:2004环境管理体系认证</span>
+                    </li>
+                    <li class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="600">
+                        <i class="fa fa-check"></i><span th:text="#{view.abouthuaxin.abouthuaxin.Qualification7}">2008年6月通过了可与日本P-MARK互认的个人信息保护PIPA认证</span>
+                    </li>
+                    <li class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="700">
+                        <i class="fa fa-check"></i><span th:text="#{view.abouthuaxin.abouthuaxin.Qualification8}">2010年通过ISO9001:2008质量管理体系换版认证</span>
+                    </li>
+                    <li class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="800">
+                        <i class="fa fa-check"></i><span th:text="#{view.abouthuaxin.abouthuaxin.Qualification9}">2010年通过CMMI5级评估</span>
+                    </li>
+                    <li class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="900">
+                        <i class="fa fa-check"></i><span th:text="#{view.abouthuaxin.abouthuaxin.Qualification10}">2013年通过ISO20000:2011IT服务管理体系认证</span>
+                    </li>
+                    <li class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="900">
+                        <i class="fa fa-check"></i><span th:text="#{view.abouthuaxin.abouthuaxin.Qualification11}">2014年7月完成了向ISO27001:2013的转换</span>
+                    </li>
+                    <li class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="900">
+                        <i class="fa fa-check"></i><span th:text="#{view.abouthuaxin.abouthuaxin.Qualification12}">2014年12月公司获得信息系统安全集成服务一级资质</span>
+                    </li>
+                    <li class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="900">
+                        <i class="fa fa-check"></i><span th:text="#{view.abouthuaxin.abouthuaxin.Qualification13}">2015年12月公司获得软件安全开发服务一级资质</span>
+                    </li>
+                    <li>&nbsp;</li>
+                </ul>
+
+            </div>
+        </section>
+
+    </div>
+</section>
+</body>
+</html>

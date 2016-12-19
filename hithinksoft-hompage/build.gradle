@@ -1,0 +1,117 @@
+group = 'com.hithinksoft.homepage'
+version = '1.0-SNAPSHOT'
+
+
+
+buildscript {
+    repositories {
+    	maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        maven { url "http://repo.spring.io/milestone" }
+        repositories {
+            maven { url 'http://repo.spring.io/plugins-release' }
+        }
+    }
+    dependencies {
+        classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.7'
+        classpath 'io.spring.gradle:dependency-management-plugin:0.6.0.RELEASE'
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath('se.transmode.gradle:gradle-docker:1.2')
+    }
+}
+
+
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'spring-boot'
+apply plugin: 'docker'
+apply plugin: 'jacoco'
+apply plugin: 'propdeps'
+apply plugin: 'propdeps-maven'
+apply plugin: 'propdeps-idea'
+apply plugin: 'propdeps-eclipse'
+apply plugin: 'io.spring.dependency-management'
+
+compileJava.options.encoding = 'UTF-8'
+
+sourceCompatibility = 1.8
+
+repositories {
+	maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    jcenter()
+    mavenCentral()
+    maven { url "http://maven.springframework.org/release" }
+    maven { url "http://repo.spring.io/milestone" }
+    maven { url "https://mvnrepository.com/artifact/cn.bestwu/ueditor" }
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-devtools')
+	compile("org.projectlombok:lombok:${lombokVersion}")
+	compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-mail')
+	compile('org.codehaus.groovy:groovy')
+
+    compile("cn.bestwu:ueditor:${ueditorVersion}")
+
+    compile("net.sourceforge.nekohtml:nekohtml")
+    compile('nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect')
+    compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4')
+    compile("io.github.jpenren:thymeleaf-spring-data-dialect:${thymeleafSpringDataDialectVersion}")
+
+    runtime('org.flywaydb:flyway-core')
+    runtime('com.h2database:h2')
+    runtime('mysql:mysql-connector-java')
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('org.spockframework:spock-spring')
+    testCompile("org.gebish:geb-spock:${gebSpockVersion}")
+    testCompile("org.seleniumhq.selenium:selenium-api")
+    testCompile("org.seleniumhq.selenium:htmlunit-driver")
+    testCompile("org.springframework.security:spring-security-test")
+
+    //webjars
+    compile('org.webjars:webjars-locator')
+    compile("org.webjars:bootstrap:${bootstrapVersion}")
+
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+task buildDocker(type: Docker, dependsOn: build) {
+    applicationName = jar.baseName
+    dockerfile = file('src/main/docker/Dockerfile')
+    doFirst {
+        copy {
+            from jar
+            into stageDir
+        }
+    }
+}
+
+eclipse {
+    classpath {
+        containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+        containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
+    }
+}
+apply plugin: 'idea'
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+bootRepackage {
+    excludeDevtools = true
+}

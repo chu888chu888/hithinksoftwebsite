@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main">
+<head>
+    <title>SHOW</title>
+    <style type="text/css">
+        p {
+            margin: 0;
+        }
+
+        .newspart p, div p {
+            margin-bottom: 30px;
+        }
+        img {
+            max-width: 787px;
+        }
+        .image-gallery{
+            margin-bottom: 30px;
+            padding: 0 143px;
+        }
+        @media (max-width: 1200px) {
+            .image-gallery {
+                padding: 0 !important;
+            }
+
+            iframe{
+                width:100%;
+            }
+
+            .post-content img {
+                width: 100%;
+            }
+
+            .breadcrumb, .post-date, .sidebar {
+                display: none;
+            }
+
+            article.post-large {
+                margin: 0;
+            }
+            @media (max-width: 650px){
+                iframe{
+                    width:100%;
+                    height: inherit;
+                }
+            }
+        }
+    </style>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="body">
+        <div role="main" class="main">
+            <section class="page-header page-header-light page-header-more-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1><span th:text="#{view.layouts.main.newsfocus}"></span> <i style="font-style: normal">News
+                                Focus</i></h1>
+                            <ul class="breadcrumb breadcrumb-valign-mid">
+                                <li><a href="#" th:href="${#mvc.url('NLC#page').build()}"
+                                       th:text="#{view.layouts.main.newsfocus}">newsfocus</a></li>
+                                <li class="active" th:text="${news.title}">Header Light</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-9">
+
+
+                        <article class="post post-large">
+
+                            <div class="post-date">
+                                <span class="day" th:text="${dates.day(news.createdAt)}">10</span>
+                                <span class="month" th:text="${dates.monthNameShort(news.createdAt)}">Jan</span>
+                            </div>
+
+                            <div class="post-content">
+
+                                <h2 style="padding: 10px 0 10px 0;"><a th:text="${news.title}">Post Format - Single Image</a></h2>
+                                <span class="newspart" style="margin-bottom: 30px;" th:utext="${news.detail}"></span>
+
+                            </div>
+                        </article>
+
+
+                    </div>
+
+                    <div class="col-md-3">
+                        <aside class="sidebar">
+
+                            <div class="tabs mb-xlg">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#popularPosts" data-toggle="tab"><span
+                                            th:text="#{view.newsfocus.index.popular}">Popular</span></a></li>
+                                    <li><a href="#recentPosts" data-toggle="tab"><span
+                                            th:text="#{view.newsfocus.index.recent}">Recent</span></a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="popularPosts">
+                                        <ul class="simple-post-list">
+                                            <li th:each="popular,iterStat:${popular}">
+                                                <div class="post-image">
+                                                    <div class="img-thumbnail">
+                                                        <a href="show.html"
+                                                           th:href="${#mvc.url('NSC#show').arg(0,popular.id).build()}">
+                                                            <img src="img/blog-thumb-1.jpg"
+                                                                 th:src="@{${popular.thumb}}" alt=""  width="50px" height="50px">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-info">
+                                                    <a href="show.html"
+                                                       th:href="${#mvc.url('NSC#show').arg(0,popular.id).build()}"><span
+                                                            th:text="${popular.title}">Nullam Vitae Nibh Un Odiosters</span></a>
+
+                                                    <div class="post-meta">
+                                                        <span th:text="${#dates.format(popular.createdAt,'yyyy-MM-dd')}"> Jan 10, 2016</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-pane" id="recentPosts">
+                                        <ul class="simple-post-list">
+                                            <li th:each="recent,iterStat:${recent}">
+                                                <div class="post-image">
+                                                    <div class="img-thumbnail">
+                                                        <a href="show.html"
+                                                           th:href="${#mvc.url('NSC#show').arg(0,recent.id).build()}">
+                                                            <img src="img/blog-thumb-1.jpg"
+                                                                 th:src="@{${recent.thumb}}" alt=""  width="50px" height="50px">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-info">
+                                                    <a href="show.html"
+                                                       th:href="${#mvc.url('NSC#show').arg(0,recent.id).build()}"><span
+                                                            th:text="${recent.title}">Nullam Vitae Nibh Un Odiosters</span></a>
+
+                                                    <div class="post-meta">
+                                                        <span th:text="${#calendars.format(recent.createdAt,'yyyy-MM-dd')}"> Jan 10, 2016</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+</body>
+</html>

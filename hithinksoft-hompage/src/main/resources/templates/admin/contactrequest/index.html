@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml"
+      layout:decorator="admin/layouts/main">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title th:text="#{view.layouts.main.contactus}">联系我们</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <section>
+        <div class="section-header">
+            <ol class="breadcrumb" th:switch="${method}">
+                <li><a href="/admin/contactrequest/all" th:href="@{/admin/contactrequests/all}"
+                       th:text="#{view.layouts.main.contactus}">联系我们</a></li>
+                <li class="active" th:case="'all'"
+                    th:text="#{view.admin.contactrequest.status.all}">全部
+                </li>
+                <li class="active" th:case="'unread'"
+                    th:text="#{view.admin.contactrequest.status.unread}">未读
+                </li>
+                <li class="active" th:case="'read'"
+                    th:text="#{view.admin.contactrequest.status.read}">已读
+                </li>
+                <li class="active" th:case="'showdelete'"
+                    th:text="#{view.admin.contactrequest.status.delete}">已删除
+                </li>
+                <li class="active" th:case="*" th:text="#{view.admin.contactrequest.status.all}">
+                    全部
+                </li>
+            </ol>
+        </div>
+        <div class="section-body">
+            <div class="card">
+                <div class="section-action">
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive no-margin">
+                        <table class="table table-striped table-condensed">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th style="display: none;">id</th>
+                                <th th:text="#{view.joinus.contactus.enterprisename}">公司名称</th>
+                                <th th:text="#{view.joinus.contactus.contact}">联系人</th>
+                                <th th:text="#{view.joinus.contactus.time}">时间</th>
+                                <th th:text="#{view.joinus.contactus.requirementdescription}">需求描述</th>
+                                <th th:text="#{view.admin.authorities.field.status}">状态</th>
+                                <th class="text-right"
+                                    th:text="#{view.admin.authorities.field.operation}">操作
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="contactRequest, contactRequestStat: ${contactRequests}">
+                                <td scope="row" th:text="${contactRequestStat.index+1}">1</td>
+                                <td style="display: none;" th:text="${contactRequest.id}">1</td>
+                                <td>
+                                    <a th:href="${#mvc.url('CRDC#detail').arg(0,contactRequest.id).arg(1,contactRequests.getNumber()).arg(2,method).build()}"
+                                       class="btn" style="padding-left: 0px"><span
+                                            th:text="${contactRequest.enterpriseName}">公司名称</span></a>
+                                </td>
+                                <td th:text="${contactRequest.contact}">联系人</td>
+                                <td th:text="${#dates.createToday() < contactRequest.createdAt}?${#dates.format(contactRequest.createdAt,'HH:mm')}:${#dates.format(contactRequest.createdAt,'MM-dd')}">
+                                    时间
+                                </td>
+                                <td th:text="${#strings.length(contactRequest.requirementDescription)}>20?${#strings.substring(contactRequest.requirementDescription,0,20)} + '...':${contactRequest.requirementDescription}">
+                                    需求描述
+                                </td>
+                                <td>
+                                    <a th:href="${#mvc.url('CRDC#detail').arg(0,contactRequest.id).arg(1,contactRequests.getNumber()).arg(2,method).build()}"
+                                       class="btn" style="padding-left: 0px">
+                                        <span class="tag label label-info" th:if="${contactRequest.contactRequestStatus.status} == '未读'"
+                                              th:text="${contactRequest.contactRequestStatus.status}">未读</span>
+                                        <span class="tag label label-warning" th:if="${contactRequest.contactRequestStatus.status} == '已读'"
+                                              th:text="${contactRequest.contactRequestStatus.status}">未读</span>
+                                        <span class="tag label label-danger" th:if="${contactRequest.contactRequestStatus.status} == '删除'"
+                                              th:text="${contactRequest.contactRequestStatus.status}">删除</span>
+                                    </a>
+                                </td>
+                                <td class="text-right">
+                                    <button type="button" class="btn btn-icon-toggle"
+                                            data-toggle="tooltip"
+                                            data-placement="top"
+                                            onclick="deletecontactrequest(this)"><i
+                                            class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div sd:pagination-summary="">info</div>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <ul class="pagination" sd:pagination="full">
+                                <li class="disabled"><a href="#">«</a></li>
+                                <li class="active"><a href="#">1<span
+                                        class="sr-only">(current)</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="deleteContactRequest" role="dialog"
+                         aria-labelledby="deleteModalForm"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title"
+                                        th:text="#{view.admin.contactrequest.modal.title}">删除</h3>
+                                </div>
+                                <form class="form-horizontal form-validate" role="form"
+                                      id="deleteModalForm"
+                                      th:action="@{/admin/contactrequest}" th:method="delete">
+                                    <div class="modal-body">
+                                        <h6 th:text="#{view.admin.contactrequest.modal.message}">
+                                            确认要删除该条信息么？</h6>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-default" type="button"
+                                                data-dismiss="modal"
+                                                th:text="#{view.admin.contactrequest.modal.cancel}">
+                                            取消
+                                        </button>
+                                        <button class="btn btn-primary" type="submit"
+                                                th:text="#{view.admin.contactrequest.modal.confirm}">
+                                            确认删除
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script th:inline="javascript">
+        function deletecontactrequest(obj) {
+//            var method = [[${method}]];
+//            var page = [[${contactRequests.getNumber()}]];
+            var tds = $(obj).parent().parent().find("td");
+            $("#deleteModalForm").attr("action", "/admin/contactrequests/" + tds.eq(1).text());
+            $("#deleteContactRequest").modal();
+        }
+    </script>
+</div>
+</body>
+</html>

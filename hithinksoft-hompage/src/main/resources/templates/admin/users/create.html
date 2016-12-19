@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="admin/layouts/main">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title th:text="#{view.main.layouts.main.menu-admin-user}">人员管理</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <section>
+        <div class="section-header">
+            <ol class="breadcrumb">
+                <li><a th:href="@{/admin/users}">人员管理</a></li>
+                <li class="active" th:text="#{view.admin.users.button.create}">添加新人员</li>
+            </ol>
+        </div>
+        <div class="col-md-offset-3 col-md-5">
+            <form class="form form-validate" novalidate="novalidate" th:action="@{/admin/users}" th:method="post"
+                  th:object="${user}" modelAttribute="user">
+                <div class="card">
+                    <div class="card-head style-primary">
+                        <header th:text="#{view.admin.users.button.create}">添加新人员</header>
+                    </div>
+                    <div class="card-body floating-label">
+                        <div class="form-group" th:attrappend="class=${#fields.hasErrors('username')?' has-error':''}">
+                            <input type="text" class="form-control" th:field="*{username}">
+                            <label th:for="*{username}" th:text="#{view.admin.users.field.username}">用户名</label>
+                            <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                                  class="help-block"></span>
+
+                            <p class="help-block">用户名不得超过12位</p>
+                        </div>
+                        <div class="form-group" th:attrappend="class=${#fields.hasErrors('name')?' has-error':''}">
+                            <input type="text" class="form-control" th:field="*{name}"/>
+                            <label th:for="*{name}" th:text="#{view.admin.users.field.name}">姓名</label>
+                            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="help-block"></span>
+
+                            <p class="help-block">如：张三</p>
+                        </div>
+                        <div class="form-group" th:attrappend="class=${#fields.hasErrors('password')?' has-error':''}">
+                            <input type="password" class="form-control" th:field="*{password}"/>
+                            <label th:for="*{password}" th:text="#{view.admin.login.password}">密码</label>
+                            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                                  class="help-block"></span>
+
+                            <p class="help-block">
+                                密码长度为6~12位</p>
+                        </div>
+                        <div class="form-group"
+                             th:attrappend="class=${#fields.hasErrors('repassword')?' has-error':''}">
+                            <input type="password" class="form-control" th:field="*{repassword}">
+                            <label th:for="*{repassword}">确认密码</label>
+                            <span th:if="${#fields.hasErrors('repassword')}" th:errors="*{repassword}"
+                                  class="help-block"></span>
+
+                            <p class="help-block">
+                                两次输入密码需一致</p>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2 control-label"
+                                 th:text="#{view.admin.users.field.role}">角色
+                            </div>
+                            <div class="col-sm-10">
+                                <label class="radio-inline radio-styled" th:each="role:${roles}">
+                                    <input type="radio" th:field="*{role}" th:value="${role}"><span
+                                        th:text="${role}"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2 control-label"
+                                 th:text="#{view.admin.users.field.group}">用户组
+                            </div>
+                            <div class="col-sm-10">
+                                <label class="radio-inline radio-styled" th:each="group:${groups}">
+                                    <input type="radio" th:field="*{group}" th:value="${group}"><span
+                                        th:text="${group.name}"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2 control-label"
+                                 th:text="#{view.admin.authorities.field.status}">状态
+                            </div>
+                            <div class="col-sm-8">
+                                <label class="radio-inline radio-styled">
+                                    <input type="radio" th:field="*{enabled}" value="0" checked><span
+                                        th:text="#{view.admin.authorities.field.enabled.false}">禁用</span>
+                                </label>
+                                <label class="radio-inline radio-styled">
+                                    <input type="radio" th:field="*{enabled}" value="1"><span
+                                        th:text="#{view.admin.authorities.field.enabled.true}">启用</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="card-actionbar">
+                            <div class="card-actionbar-row">
+                                <button type="submit" class="btn btn-primary ink-reaction" id="create"
+                                        th:text="#{view.admin.users.field.add}">添加
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end .card-body -->
+                </div>
+                <!--end .card -->
+            </form>
+        </div>
+        <!--end .col -->
+    </section>
+</div>
+<script th:inline="javascript" layout:fragment="script">
+    $(document).ready(function () {
+        $("#role1").attr("checked", "checked");
+        $("#group1").attr("checked", "checked");
+    })
+</script>
+</body>
+</html>

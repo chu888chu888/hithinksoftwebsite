@@ -1,0 +1,319 @@
+<html class="no-js" lang="zh-cn"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE"
+           th:text="#{view.main.layouts.main.title}">title</title>
+
+    <meta name="keywords" content="HTML5 Template"/>
+    <meta name="description" content="Porto - Responsive HTML5 Template">
+    <meta name="author" content="okler.net">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport"
+          content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="title-icon" href="title-icon.ioc" th:href="@{/favicon.ioc}">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300italic,400italic,300,400,500,700,900'
+          rel='stylesheet' type='text/css'/>
+    <link type="text/css" rel="stylesheet"
+          href="http://cdn.hithinksoft.com/home-page/css/theme-default/bootstrap.css"
+          th:href="@{http://cdn.hithinksoft.com/home-page/css/theme-default/bootstrap.css}"/>
+    <link type="text/css" rel="stylesheet"
+          href="http://cdn.hithinksoft.com/home-page/css/theme-default/materialadmin.css"
+          th:href="@{http://cdn.hithinksoft.com/home-page/css/theme-default/materialadmin.css}"/>
+    <link type="text/css" rel="stylesheet"
+          href="http://cdn.hithinksoft.com/home-page/css/theme-default/font-awesome.min.css"
+          th:href="@{http://cdn.hithinksoft.com/home-page/css/theme-default/font-awesome.min.css}"/>
+    <link type="text/css" rel="stylesheet"
+          href="http://cdn.hithinksoft.com/home-page/css/theme-default/material-design-iconic-font.min.css"
+          th:href="@{http://cdn.hithinksoft.com/home-page/css/theme-default/material-design-iconic-font.min.css}"/>
+    <link type="text/css" rel="stylesheet"
+          href="http://cdn.hithinksoft.com/home-page/css/theme-default/libs/rickshaw/rickshaw.css"
+          th:href="@{http://cdn.hithinksoft.com/home-page/css/theme-default/libs/rickshaw/rickshaw.css}"/>
+    <link type="text/css" rel="stylesheet"
+          href="http://cdn.hithinksoft.com/home-page/css/theme-default/libs/morris/morris.core.css"
+          th:href="@{http://cdn.hithinksoft.com/home-page/css/theme-default/libs/morris/morris.core.css}"/>
+
+    <!-- END STYLESHEETS -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]-->
+    <script type="text/javascript"
+            src="http://cdn.hithinksoft.com/home-page/js/libs/utils/html5shiv.js"
+            th:src="@{http://cdn.hithinksoft.com/home-page/js/libs/utils/html5shiv.js}"></script>
+    <script type="text/javascript"
+            src="http://cdn.hithinksoft.com/home-page/js/libs/utils/respond.min.js"
+            th:src="@{http://cdn.hithinksoft.com/home-page/js/libs/utils/respond.min.js}"></script>
+</head>
+<body class="menubar-hoverable header-fixed ">
+
+<!-- BEGIN HEADER-->
+<header id="header">
+    <div class="headerbar">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="headerbar-left">
+            <ul class="header-nav header-nav-options">
+                <li class="header-nav-brand">
+                    <div class="brand-holder">
+                        <a href="#">
+                            <span class="text-lg text-bold text-primary"
+                                  th:text="#{view.main.layouts.main.project}">后台管理</span>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <a class="btn btn-icon-toggle menubar-toggle" data-toggle="menubar"
+                       href="javascript:void(0);">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="headerbar-right">
+            <ul class="header-nav header-nav-profile">
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle ink-reaction"
+                       data-toggle="dropdown">
+                        <img src="avatar-default.png" th:src="@{http://cdn.hithinksoft.com/home-page/img/default-avatar.png}" alt=""/>
+								<span class="profile-info">
+									<span sec:authentication="name"></span>
+									<small sec:authorize="hasRole('ROLE_ROOT')"
+                                           th:text="#{view.main.layouts.main.role.ROLE_ROOT}">超级管理员
+                                    </small>
+									<small sec:authorize="hasRole('ROLE_ADMIN')"
+                                           th:text="#{view.main.layouts.main.role.ROLE_ADMIN}">管理员
+                                    </small>
+									<small sec:authorize="hasRole('ROLE_USER')"
+                                           th:text="#{view.main.layouts.main.role.ROLE_USER}">普通用户
+                                    </small>
+								</span>
+                    </a>
+                    <ul class="dropdown-menu animation-dock">
+                        <li>
+                            <a href="#" th:href="@{/logout}"><i class="fa fa-fw fa-power-off text-danger">登出</i></a>
+                        </li>
+                    </ul>
+                    <!--end .dropdown-menu -->
+                </li>
+                <!--end .dropdown -->
+            </ul>
+            <!--end .header-nav-profile -->
+        </div>
+        <!--end #header-navbar-collapse -->
+    </div>
+</header>
+<!-- END HEADER-->
+
+<!-- BEGIN BASE-->
+<div id="base">
+
+    <!-- BEGIN CONTENT-->
+    <div id="content">
+        <section layout:fragment="content">
+        </section>
+    </div>
+
+    <!--end #content-->
+    <!-- END CONTENT -->
+
+    <!-- BEGIN MENUBAR-->
+    <div id="menubar" class="">
+
+        <div class="menubar-scroll-panel">
+
+            <!-- BEGIN MAIN MENU -->
+            <ul id="main-menu" class="gui-controls">
+
+                <li>
+                    <a href="#" th:href="@{/admin}" class="active"
+                       th:attr="class=${#urlHelper.isCurrentPathMatchRegex('/admin/?')?'active':''}">
+                        <div class="gui-icon"><i class="md md-home"></i></div>
+                        <span class="title" th:text="#{view.main.layouts.main.home}">主页</span>
+                    </a>
+                </li>
+
+                <li th:attr="class=${#urlHelper.isCurrentPathMatchAnt('/admin/news/**')?'active':''}">
+                    <a href="#" th:href="@{/admin/news}">
+                        <div class="gui-icon"><i class="md md-dvr"></i></div>
+                        <span class="title"
+                              th:text="#{view.main.layouts.main.menu-news}">新闻聚焦</span>
+                    </a>
+                </li>
+
+                <li th:attr="class=${#urlHelper.isCurrentPathMatchAnt('/admin/jobs/**')?'active':''}">
+                    <a href="javascript:void(0);" th:href="@{/admin/jobs}">
+                        <div class="gui-icon"><i class="md md-work"></i></div>
+                        <span class="title" th:text="#{view.layouts.main.menu-jobs}">工作机会</span>
+                    </a>
+                </li>
+
+                <li th:attr="class=${#urlHelper.isCurrentPathMatchAnt('/admin/solutions/**')||#urlHelper.isCurrentPathMatchAnt('/admin/solutionGroups/**')?'active':''}">
+                    <a href="javascript:void(0);">
+                        <div class="gui-icon"><i class="md md-extension"></i></div>
+                        <span class="title" th:text="#{view.layouts.main.solution}">解决方案</span>
+                    </a>
+                    <!--start submenu -->
+                    <ul>
+                        <li><a href="#"
+                               th:attr="class=${#urlHelper.isCurrentPathMatchAnt('/admin/solutions/**')?'active':''}"
+                               th:href="@{/admin/solutions}"><span class="title"
+                                                                   th:text="#{view.main.layouts.main.viewsolution}">查看方案</span></a>
+                        </li>
+                        <li><a href="#"
+                               th:attr="class=${#urlHelper.isCurrentPathMatchAnt('/admin/solutionGroups/**')?'active':''}"
+                               th:href="@{/admin/solutionGroups}"><span class="title"
+                                                                        th:text="#{view.main.layouts.main.viewModule}">查看方案类别</span></a>
+                        </li>
+                    </ul>
+                    <!--end /submenu -->
+                </li>
+
+                <li th:class="${#urlHelper.isCurrentPathMatchAnt('/admin/contactrequests/**')?'active':''}">
+                    <a href="javascript:void(0)">
+                        <div class="gui-icon"><i class="md md-email"></i></div>
+                        <span class="title" th:text="#{view.layouts.main.contactus}">联系我们</span>
+                    </a>
+                    <!--start submenu -->
+                    <ul>
+                        <li>
+                            <a th:href="${#mvc.url('CRIC#showAll').build()}"
+                               th:class="${#urlHelper.isCurrentPathMatchAnt('/admin/contactrequests/all/**')?'active':''}"><span
+                                    class="title"
+                                    th:text="#{view.admin.contactrequest.status.all}">全部</span></a>
+                        </li>
+                        <li>
+                            <a th:href="${#mvc.url('CRIC#showUnread').build()}"
+                               th:class="${#urlHelper.isCurrentPathMatchAnt('/admin/contactrequests/unread/**')?'active':''}"><span
+                                    class="title"
+                                    th:text="#{view.admin.contactrequest.status.unread}">未读</span></a>
+                        </li>
+                        <li>
+                            <a th:href="${#mvc.url('CRIC#showRead').build()}"
+                               th:class="${#urlHelper.isCurrentPathMatchAnt('/admin/contactrequests/read/**')?'active':''}"><span
+                                    class="title"
+                                    th:text="#{view.admin.contactrequest.status.read}">已读</span></a>
+                        </li>
+                        <li>
+                            <a th:href="${#mvc.url('CRIC#showDelete').build()}"
+                               th:class="${#urlHelper.isCurrentPathMatchAnt('/admin/contactrequests/delete/**')?'active':''}"><span
+                                    class="title"
+                                    th:text="#{view.admin.contactrequest.status.delete}">已删除</span></a>
+                        </li>
+                    </ul>
+                    <!--end /submenu -->
+                </li>
+
+                <!-- BEGIN SYSTEM -->
+                <li sec:authorize="hasAuthority('AUTH_USER_MGNT') or hasAuthority('AUTH_ENTERPRISE_MGNT') or hasAuthority('AUTH_GROUP_MGNT')"
+                    th:attr="class=${#urlHelper.isCurrentPathMatchAnt('/admin/users/**')||#urlHelper.isCurrentPathMatchAnt('/admin/groups/**') ||#urlHelper.isCurrentPathMatchAnt('/admin/authorities/**')?  'active' : ''}">
+                    <a href="javascript:void(0);">
+                        <div class="gui-icon"><i class="md md-people"></i></div>
+                        <span class="title"
+                              th:text="#{view.main.layouts.main.menu-admin}">用户权限管理</span>
+                    </a>
+                    <!--start submenu -->
+                    <ul>
+                        <li sec:authorize="hasAuthority('AUTH_USER_MGNT')"><a
+                                th:href="${#mvc.url('UIC#index').build()}"
+                                th:attr="class=${#urlHelper.isCurrentPathMatchAnt('/admin/users/**')?'active':''}"><span
+                                class="title" th:text="#{view.main.layouts.main.menu-admin-user}">用户管理</span></a>
+                        </li>
+                        <li sec:authorize="hasAuthority('AUTH_GROUP_MGNT')"><a href="#"
+                                                                               th:href="${#mvc.url('GIC#index').build()}"
+                                                                               th:attr="class=${#urlHelper.isCurrentPathMatchAnt('/admin/groups/**')? 'active' : ''}"><span
+                                class="title" th:text="#{view.main.layouts.main.menu-admin-group}">用户组管理</span></a>
+                        </li>
+                        <li sec:authorize="hasAuthority('AUTH_AUTHORITY_MGNT')"><a href="#"
+                                                                                   th:href="${#mvc.url('AIC#index').build()}"
+                                                                                   th:attr="class=${#urlHelper.isCurrentPathMatchAnt('/admin/authorities/**')? 'active' : ''}"><span
+                                class="title"
+                                th:text="#{view.main.layouts.main.menu-admin-permission}">权限管理</span></a>
+                        </li>
+                    </ul>
+                    <!--end /submenu -->
+                </li>
+            </ul>
+            <!--end .main-menu -->
+            <!-- END MAIN MENU -->
+
+            <div class="menubar-foot-panel">
+                <small class="no-linebreak hidden-folded">
+                    <span class="opacity-75">Copyright &copy; 2014</span>
+                    <strong>CodeCovers</strong>
+                </small>
+            </div>
+        </div>
+        <!--end .menubar-scroll-panel-->
+    </div>
+    <!--end #menubar-->
+    <!-- END MENUBAR -->
+</div>
+<!--end #base-->
+<!-- END BASE -->
+<script src="http://cdn.hithinksoft.com/home-page/vendor/jquery/jquery.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/vendor/jquery/jquery.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/vendor/bootstrap/js/bootstrap.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/vendor/bootstrap/js/bootstrap.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/libs/spin.js/spin.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/libs/spin.js/spin.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/libs/autosize/jquery.autosize.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/libs/autosize/jquery.autosize.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/libs/moment/moment.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/libs/moment/moment.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/libs/flot/jquery.flot.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/libs/flot/jquery.flot.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/libs/flot/jquery.flot.time.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/libs/flot/jquery.flot.time.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/libs/flot/jquery.flot.resize.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/libs/flot/jquery.flot.resize.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/libs/flot/jquery.flot.orderBars.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/libs/flot/jquery.flot.orderBars.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/libs/flot/jquery.flot.pie.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/libs/flot/jquery.flot.pie.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/libs/flot/curvedLines.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/libs/flot/curvedLines.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/libs/jquery-knob/jquery.knob.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/libs/jquery-knob/jquery.knob.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/libs/sparkline/jquery.sparkline.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/libs/sparkline/jquery.sparkline.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/libs/nanoscroller/jquery.nanoscroller.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/libs/nanoscroller/jquery.nanoscroller.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/libs/d3/d3.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/libs/d3/d3.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/libs/d3/d3.v3.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/libs/d3/d3.v3.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/libs/rickshaw/rickshaw.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/libs/rickshaw/rickshaw.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/core/source/App.min.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/core/source/App.min.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/core/source/AppNavigation.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/core/source/AppNavigation.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/core/source/AppOffcanvas.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/core/source/AppOffcanvas.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/core/source/AppCard.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/core/source/AppCard.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/core/source/AppForm.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/core/source/AppForm.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/core/source/AppNavSearch.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/core/source/AppNavSearch.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/core/source/AppVendor.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/core/source/AppVendor.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/core/demo/Demo.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/core/demo/Demo.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/core/demo/DemoFormComponents.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/core/demo/DemoFormComponents.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/ueditor/ueditor.config.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/ueditor/ueditor.config.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/js/ueditor/ueditor.all.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/js/ueditor/ueditor.all.js}"></script>
+<script src="http://cdn.hithinksoft.com/home-page/vendor/jquery/ajaxfileupload.js"
+        th:src="@{http://cdn.hithinksoft.com/home-page/vendor/jquery/ajaxfileupload.js}"></script>
+<script th:inline="javascript" layout:fragment="script"></script>
+</body>
+</html>

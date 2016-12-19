@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main">
+<head>
+    <title>job</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="body">
+        <div role="main" class="main">
+            <section class="page-header page-header-light page-header-more-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1><span th:text="#{view.layouts.main.job}">工作机会</span> <i
+                                    class="font-style-normal">Job
+                                Opportunities</i></h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="container">
+                <h2><span th:text="#{view.joinus.job.title}"></span></h2>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="text-md line-height-xl"
+                           th:utext="#{view.joinus.job.paragraph}"></p>
+                        </di>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="toggle toggle-primary mt-lg" data-plugin-toggle>
+                                <section id="joby" class="toggle" th:each="job:${jobs}">
+                                    <label th:text="${job.jobName}"></label>
+
+                                    <div class="toggle-content">
+                                        <p><strong
+                                                th:text="#{view.joinus.job.workplace}"></strong><span
+                                                th:text="${job.location}"></span></p>
+
+                                        <p th:if="${job.numberRequirement}"
+                                           th:text="#{view.joinus.job.numberofrequirements} + ${job.numberRequirement}+#{view.joinus.job.people}"
+                                           class="pt-none"></p>
+
+                                        <div th:utext="${job.jobContent}"></div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="featured-box-primary mt-lg">
+                                <h4 th:text="#{view.joinus.job.statement}">声明</h4>
+
+                                <p class="line-height-xl"
+                                   th:utext="#{view.joinus.job.statementcontent}">
+                                    我公司承诺保护您所提供的个人资料的安全性，我们将采用各种安全防护措施帮助保护您的个人信息，使其不受到未经授权的访问、使用或披露。<br/>请将个人简历以邮件形式发到公司，并注明应聘职位、招聘信息获取渠道。
+                                </p>
+                            </div>
+                            <hr>
+                            <div>
+                                <ul class="list list-icons list-icons-style-3 align-left">
+                                    <li><i class="fa fa-envelope"></i><strong
+                                            th:text="#{view.joinus.job.resumeemailbox}">简历投递邮箱：</strong><span
+                                            th:text="#{view.joinus.job.resumeemail}">hr@hithinksoft.com</span>
+                                    </li>
+                                    <li><i class="fa fa-home"></i><strong><span
+                                            th:text="#{view.joinus.job.website}">公司网址：</span></strong><span
+                                            th:text="#{view.joinus.job.detailurl}">http://www.hithinksoft.com/</span>
+                                    </li>
+                                    <li><i class="fa fa-map-marker"></i><strong
+                                            th:text="#{view.joinus.job.addressjiangsu}">地址（江苏）：</strong><span
+                                            th:text="#{view.joinus.job.detailaddressjiangsu}">江苏省昆山市花桥经济开发区金捷路1号</span>
+                                    </li>
+                                    <li><i class="fa fa-map-marker"></i><strong
+                                            th:text="#{view.joinus.job.addressdalian}">地址（大连）：</strong><span
+                                            th:text="#{view.joinus.job.detailaddressdalian}">辽宁省大连市高新园区汇贤园1号（腾飞园区）8楼西区</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <hr>
+                            <div class="featured-box-primary">
+                                <h4 th:text="#{view.joinus.contactus.telephone}"></h4>
+                                <ul class="list list-unstyled">
+                                    <li><span th:text="#{view.joinus.job.telephonedalian}">大连：0411-84575067，84591165，84591149</span>
+                                    </li>
+                                    <li><span th:text="#{view.joinus.job.telephonebeijing}">北京：010-52818835，52818834</span>
+                                    </li>
+                                    <li><span th:text="#{view.joinus.job.telephoneshanghai}">上海：021-50898965，58389825</span>
+                                    </li>
+                                    <li><span th:text="#{view.joinus.job.telephonewuhan}">武汉：027-87562006，87562001</span>
+                                    </li>
+                                    <li><span th:text="#{view.joinus.job.telephoneshenzhen}">深圳：0755-86156488</span>
+                                    </li>
+                                    <li><span th:text="#{view.joinus.job.telephonekunshan}">昆山：0755-86156488</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
